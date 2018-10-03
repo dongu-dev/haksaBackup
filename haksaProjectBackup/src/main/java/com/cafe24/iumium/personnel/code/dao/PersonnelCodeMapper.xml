@@ -1,1 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cafe24.iumium.personnel.code.dao.PersonnelCodeMapper">
+	<select id="listPersonnelCommonCode"
+			parameterType="java.util.Map"
+			resultType="com.cafe24.iumium.personnel.code.dto.PersonnelCommonCode">
+		SELECT 
+		   personnel_common_appointment_code AS personnelCommonAppointmentCode
+		   , personnel_common_appointment_code_name AS personnelCommonAppointmentCodeName
+		   , personnel_common_use_existence_nonexistence AS personnelCommonUseExistenceNonexistence
+		   , personnel_common_registration_date AS personnelCommonRegistrationDate
+		   , personnel_common_modification_date AS personnelCommonModificationDate
+		FROM ilban_personnel_common
+			<if test="!keyWord.equals('')">
+			   <choose>
+			   		<when test="!optionSearch.equals('')">
+			   			WHERE personnel_common_appointment_code LIKE #{keyWord} AND personnel_common_appointment_code_name LIKE #{optionSearch}
+			  	</when>
+			   </choose>
+			</if>
+			<if test="keyWord.equals('')">
+				<choose>
+					<when test="!optionSearch.equals('')">
+			    		WHERE personnel_common_appointment_code_name LIKE #{optionSearch}
+					</when>
+				</choose>
+			</if>
+		ORDER BY personnel_common_appointment_code
+		ASC LIMIT #{startPage}, #{pagePerRow}
+	</select>
+
+
+	<select id="totalCount"
+			resultType="int">
+		SELECT count(*)
+		FROM ilban_personnel_common
+	</select>
+</mapper>
