@@ -20,8 +20,8 @@ public class PersonnelCodeDao {
 	private static final Logger logger = LoggerFactory.getLogger(PersonnelCodeDao.class);
 	
 	// 인사공통코드 리스트
-	public List<PersonnelCommonCode> selectPersonnelCommonCodeList(Map<String, Object> listPersonnelCommonCode) {
-		return sqlSessionTemplate.selectList(NS+"listPersonnelCommonCode", listPersonnelCommonCode);
+	public List<PersonnelCommonCode> selectPersonnelCommonCodeList(Map<String, Object> personnelCommonCodeList) {
+		return sqlSessionTemplate.selectList(NS+"personnelCommonCodeList", personnelCommonCodeList);
 	}
 	
 	// 인사공통코드 전체 행개수

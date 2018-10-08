@@ -1,3 +1,4 @@
+<!-- 기본임용페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>인사공통코드 리스트</title>
+		<title>임용정보 입력 페이지</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,31 +24,11 @@
 		<!-- Custom styles for this template-->
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		
-		<script>
-		  $(document).ready(function() {
-			$('#btn-inquiry-row').click(function() {
-				location.href='${pageContext.request.contextPath}/personnelCommonCodeList'
-			});
-			  
-			$('#btn-insert-row').click(function() {
-					location.href='${pageContext.request.contextPath}/personnelAllCode/personnelCommonCode'
-			});
-			
-			$('#btn-delete-row').click(function() {
-				let $element = $("input[name='chkConfirm']");
-				let checkCount = $element.size();
-				for (let i = 0; i < checkCount; i++) {
-					if ($element.eq(i).is(":checked")) {
-						$element.eq(i).parent().parent().remove();
-					}
-				}
-			});
-			
-			$('#btn-save-row').click(function() {
-				
-			});
-		  });
-		</script>	
+		<script>  
+			function openWin(){  
+			    window.open("http://www.naver.net", "네이버새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+			}
+		</script>
 	</head>
 	
 	<body id="page-top">
@@ -62,70 +43,21 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				
-				<h1>인사관리 > 인사공통코드</h1>
+				<!-- onclick 이벤트에 javascript 함수 호출-->  
+				<a href="#" onClick="openWin();">네이버 새창 열기</a>
+				<h1>인사관리 > 임명관리</h1>
 				<br>
-				<form action="${pageContext.request.contextPath}/personnelCode/listPersonnelCommonCode" method="get">
-					<input type="submit" value="검색">
-					<input type="text" name="keyWord">
-					<select name="optionSearch">
-						<option value="신규">신규</option>
-						<option value="공채">공채</option>
-					</select>
+				<form action="${pageContext.request.contextPath}/personnelAppointment/addAppointment" method="get">
+					<input type="text">
+					<input type="text">
+					<input type="text">
+					<input type="text">
 				</form>
-				<br><br>
-				<table border="1">
-					<thead>
-						<tr>
-							<th>발령코드</th>
-							<th>발령코드명</th>
-							<th>사용유무</th>
-							<th>시스템등록일자</th>
-							<th>최종수정일자</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="personnel" items="${PersonnelCommonCode}">
-							<tr>
-								<td>${personnel.personnelCommonAppointmentCode}</td>
-								<td>${personnel.personnelCommonAppointmentCodeName}</td>
-								<td>${personnel.personnelCommonUseExistenceNonexistence}</td>
-								<td>${personnel.personnelCommonRegistrationDate}</td>
-								<td>${personnel.personnelCommonModificationDate}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<c:if test="${currentPage > 1}">
-					<a href="${pageContext.request.contextPath}/personnelCode/listPersonnelCommonCode?currentPage=${currentPage - 1}">이전</a>
-				</c:if>
-				
-				<!-- 번호 페이징 부여 -->
-				<c:forEach var="i" begin="1" end="${lastPage}" step="1">
-					<a href="${pageContext.request.contextPath}/personnelCode/listPersonnelCommonCode?currentPage=${i}"><c:out value="${i}" /></a>
-				</c:forEach>
-				
-				<c:if test="${currentPage < lastPage }">
-					<a href="${pageContext.request.contextPath}/personnelCode/listPersonnelCommonCode?currentPage=${currentPage + 1}">다음</a>
-				</c:if>
-				</div>
-				<!-- /.container-fluid -->
-	
-				<!-- Sticky Footer -->
-				<footer class="sticky-footer">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright © Haksa 2018</span>
-						</div>
-					</div>
-				</footer>
-	
 			</div>
 			<!-- /.content-wrapper -->
-	
 		</div>
 		<!-- /#wrapper -->
-	
+		</div>
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fas fa-angle-up"></i>

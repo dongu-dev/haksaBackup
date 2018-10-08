@@ -30,17 +30,17 @@ public class PersonnelCodeService {
 		
 		int lastPage = (int) (Math.ceil(totalCount / pagePerRow));
 		
-		Map<String, Object> listPersonnelCommonCode = new HashMap<String, Object>();
-		listPersonnelCommonCode.put("startPage", startPage);
-		listPersonnelCommonCode.put("pagePerRow", pagePerRow);
-		listPersonnelCommonCode.put("optionSearch", optionSearch);
-		listPersonnelCommonCode.put("keyWord", keyWord);
+		Map<String, Object> PersonnelCommonCodeList = new HashMap<String, Object>();
+		PersonnelCommonCodeList.put("startPage", startPage);
+		PersonnelCommonCodeList.put("pagePerRow", pagePerRow);
+		PersonnelCommonCodeList.put("optionSearch", optionSearch);
+		PersonnelCommonCodeList.put("keyWord", keyWord);
 		logger.info("startPage값 : " + startPage);
 		logger.info("pagePerRow값 : " + pagePerRow);
 		logger.info("optionSearch값 : " + optionSearch);
 		logger.info("keyWord값 : " + keyWord);
 		
-		List<PersonnelCommonCode> PersonnelCommonCode = personnelCodeDao.selectPersonnelCommonCodeList(listPersonnelCommonCode);
+		List<PersonnelCommonCode> PersonnelCommonCode = personnelCodeDao.selectPersonnelCommonCodeList(PersonnelCommonCodeList);
 		
 		Map<String, Object> reListPersonnelCommonCode = new HashMap<String, Object>();
 		reListPersonnelCommonCode.put("PersonnelCommonCode", PersonnelCommonCode);
