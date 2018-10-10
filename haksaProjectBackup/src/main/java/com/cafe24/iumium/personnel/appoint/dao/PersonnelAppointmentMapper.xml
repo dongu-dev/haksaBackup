@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cafe24.iumium.personnel.appoint.dao.PersonnelAppointmentMapper">
+	<select id="personnelAppointmentList"
+			resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment">
+		SELECT 
+		appointment_school_personnel_number AS appointmentSchoolPersonnelNumber
+		, personnel_common_appointment_code AS personnelCommonAppointmentCode
+		, haksa_team.team_code AS teamCode
+		, haksa_department.dept_code AS deptCode
+		, haksa_job_rank.job_rank_code AS jobRankCode
+		, haksa_job_type.job_type_code AS jobTypeCode
+		, haksa_job_group.job_group_code AS jobGroupCode
+		, appointment_appoint_day AS appointmentAppointDay
+		, appointment_registration_date AS appointmentRegistrationDate
+		, appointment_modification_date AS appointmentModificationDate
+		FROM ilban_appointment, haksa_team, haksa_department, haksa_job_rank, haksa_job_type, haksa_job_group
+		WHERE ilban_appointment.team_code = haksa_team.team_code 
+		AND ilban_appointment.dept_code = haksa_department.dept_code 
+		AND ilban_appointment.job_rank_code = haksa_job_rank.job_rank_code 
+		AND ilban_appointment.job_type_code = haksa_job_type.job_type_code
+		AND ilban_appointment.job_group_code = haksa_job_group.job_group_code
+	</select>
+</mapper>

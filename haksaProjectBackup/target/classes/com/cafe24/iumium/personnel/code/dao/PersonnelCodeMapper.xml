@@ -31,8 +31,7 @@
 		ORDER BY personnel_common_appointment_code
 		ASC LIMIT #{startPage}, #{pagePerRow}
 	</select>
-
-
+	
 	<select id="totalCount"
 			resultType="int">
 		SELECT count(*)

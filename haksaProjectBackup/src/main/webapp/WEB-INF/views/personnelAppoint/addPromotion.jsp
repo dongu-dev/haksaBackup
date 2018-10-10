@@ -1,0 +1,193 @@
+<!--  승진처리 페이지 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+	
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<title>승진처리 페이지</title>
+		
+		<!-- Bootstrap core CSS-->
+		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Custom fonts for this template-->
+		<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+		
+		<!-- Page level plugin CSS-->
+		<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+		
+		<!-- Custom styles for this template-->
+		<link href="/resources/css/sb-admin.css" rel="stylesheet">
+		
+		<style>
+			#enrolScoreMain{
+				text-align : left;
+				font-weight: bold;
+				font-size: 30px;
+			}
+			
+			#form {
+				text-align : right;
+			}
+		</style>
+		
+		<script>  
+			// 입력 버튼 눌렀을 시 페이지 이동
+			function addPersonnelPromotion(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommonCode";
+			}
+			
+			// 조회 버튼 눌렀을 시 페이지 이동
+			function personnelPromotionList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?a=" + 'click';
+			}
+			
+			// 저장 버튼 눌렀을 시 비동기 방식을 이용한 데이터 값 저장
+			function savePersonnelPromotion(){
+			    let promotionNumber = ${'#promotionNumber'}.val();
+			    let appointmentSchoolPersonnelNumber = ${'#appointmentSchoolPersonnelNumber'}.val();
+			    let rankCode = ${'#rankCode'}.val();
+			    let promotionAppointmentAnnualIncome = ${'#promotionAppointmentAnnualIncome'}.val();
+			    let promotionDay = ${'#promotionDay'}.val();
+			    let promotionRegistrationDate = ${'#promotionRegistrationDate'}.val();
+			    let promotionAppointmentSalaryclass = ${'#promotionAppointmentSalaryclass'}.val();
+			    let promotionAppointmentDay = ${'#promotionAppointmentDay'}.val();
+			    let promotionModificationDate = ${'#promotionModificationDate'}.val(); 
+			    let promotionAppointReason = ${'#promotionAppointReason'}.val();
+			    
+			    // data:{dto의 변수명 : let으로 선언한 변수명}
+			    $ajax({
+			    	url:'/personnelAppoint/savePromotion'
+			    	, type:'GET'
+			    	, dataType:'JSON'
+			    	, data: {promotionNumber : promotionNumber, appointmentSchoolPersonnelNumber : appointmentSchoolPersonnelNumber
+			    		, rankCode : rankCode, promotionAppointmentAnnualIncome : promotionAppointmentAnnualIncome
+			    		, promotionDay : promotionDay, promotionRegistrationDate : promotionRegistrationDate
+			    		, promotionAppointmentSalaryclass : promotionAppointmentSalaryclass, promotionAppointmentDay : promotionAppointmentDay
+			    		, promotionModificationDate : promotionModificationDate, promotionAppointReason : promotionAppointReason}
+			    })
+			}		
+		</script>
+	</head>
+	
+	<body id="page-top">
+	
+		<jsp:include page="/WEB-INF/views/module/nav.jsp"/>
+	
+		<div id="wrapper">
+	
+			<jsp:include page="/WEB-INF/views/module/sidebar.jsp"/>
+	
+			<div id="content-wrapper">
+	
+				<div class="container-fluid">
+					<h1>인사관리 > 승진처리(총무,교무)</h1>
+					<br>
+					<!-- 인사기본사항 -->
+					<form id="form">
+						<input type='button' class="btn btn-info" name='a' onclick='personnelPromotionList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addPersonnelPromotion()' value='입력'/>
+						<input type='button' class="btn btn-success" onclick='savePersonnelPromotion()' value='저장'/>
+					</form>
+					<br>
+					<table class="table table-bordered">
+						<tr>
+							<td scope="col" colspan="10">
+								<p id="enrolScoreMain">* 인사기본사항</p>
+							</td>
+						</tr>
+						<tr>
+							<th>승진번호</th>
+							<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"><td>
+							<th>교직원번호</th>
+							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"><td>
+							<th>직급</th>
+							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" readonly><td>
+				   		</tr>
+				   		<!-- 발령사항 -->	
+				   		<tr align="right">
+							<td scope="col" colspan="10">
+								<p id="enrolScoreMain">* 발령사항</p>
+							</td>
+						</tr>
+						<tr>
+							<th>발령연봉</th>
+							<td><input type="text" class="form-control" name="promotionAppointmentAnnualIncome" id="promotionAppointmentAnnualIncome" placeholder="발령연봉"><td>
+							<th>승진일</th>
+							<td><input type="date" class="form-control" name="promotionDay" id="promotionDay" placeholder="승진일"><td>
+							<th>등록일자</th>
+							<td><input type="date" class="form-control" name="promotionRegistrationDate" id="promotionRegistrationDate" placeholder="등록일자"><td>
+							
+						</tr>
+						<tr>
+							<th>발령호봉</th>
+							<td><input type="text" class="form-control" name="promotionAppointmentSalaryclass" id="promotionAppointmentSalaryclass" placeholder="발령호봉"><td>
+							<th>임용일</th>
+							<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"><td>
+							<th>수정일자</th>
+							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"><td>
+						</tr>
+						<tr>
+							<th>임명사유</th>
+							<td colspan="6"><textarea class="form-control" name="promotionAppointReason" id="promotionAppointReason" ></textarea></td>
+						</tr>
+					</table>
+				</div>
+			<!-- /.content-wrapper -->
+			</div>
+		<!-- /#wrapper -->
+		</div>
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
+	
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">Ã</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are ready
+						to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.html">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Bootstrap core JavaScript-->
+		<script src="/resources/vendor/jquery/jquery.min.js"></script>
+		<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+		<!-- Core plugin JavaScript-->
+		<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+		<!-- Page level plugin JavaScript-->
+		<script src="/resources/vendor/chart.js/Chart.min.js"></script>
+		<script src="/resources/vendor/datatables/jquery.dataTables.js"></script>
+		<script src="/resources/vendor/datatables/dataTables.bootstrap4.js"></script>
+	
+		<!-- Custom scripts for all pages-->
+		<script src="/resources/js/sb-admin.min.js"></script>
+	
+		<!-- Demo scripts for this page-->
+		<script src="/resources/js/demo/datatables-demo.js"></script>
+		<script src="/resources/js/demo/chart-area-demo.js"></script>
+	
+	</body>
+</html>
