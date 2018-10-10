@@ -70,6 +70,7 @@
 			    		, promotionDay : promotionDay, promotionRegistrationDate : promotionRegistrationDate
 			    		, promotionAppointmentSalaryclass : promotionAppointmentSalaryclass, promotionAppointmentDay : promotionAppointmentDay
 			    		, promotionModificationDate : promotionModificationDate, promotionAppointReason : promotionAppointReason}
+			    	, 
 			    })
 			}		
 		</script>
