@@ -9,7 +9,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>임용 리스트</title>
+		<title>승진처리 리스트</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,29 +23,6 @@
 		<!-- Custom styles for this template-->
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		
-		<style>
-			#enrolScoreMain{
-				text-align : left;
-				font-weight: bold;
-				font-size: 30px;
-			}
-			
-			#form {
-				text-align : right;
-			}
-		</style>
-		
-		<script>  
-			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addPersonnelAppointment(){
-			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addAppointment";
-			}
-			
-			// 조회 버튼 눌렀을 시 페이지 이동
-			function personnelAppointmentList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/appointmentList";
-			}
-		</script>
 	</head>
 	
 	<body id="page-top">
@@ -60,48 +37,40 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 임명관리</h1>
+				<h1>인사관리 > 임용 리스트</h1>
 				<br>
-					<p id="enrolScoreMain">* 기본임용 리스트</p>
-					<form id="form">
-						<input type='button' class="btn btn-info" onclick='personnelAppointmentList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addPersonnelAppointment()' value='입력'/>
-						<input type='button' class="btn btn-primary" onclick='addPersonnelAppointment()' value='저장'/>
-					</form>
-					<br>
-					<table class="table table-bordered">
-						<thead>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>승진번호</th>
+							<th>교직원번호</th>
+							<th>발령직급</th>
+							<th>발령연봉</th>
+							<th>발령호봉</th>
+							<th>승진일</th>
+							<th>임용일</th>
+							<th>임명사유</th>
+							<th>등록일자</th>
+							<th>수정일자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="personnel" items="${promotionList}">
 							<tr>
-								<th>교직원번호</th>
-								<th>발령코드</th>
-								<th>발령팀</th>
-								<th>발령부서</th>
-								<th>발령직급</th>
-								<th>발령직종</th>
-								<th>발령직군</th>
-								<th>임명일</th>
-								<th>시스템등록일자</th>
-								<th>최종수정일자</th>
+								<td>${personnel.promotionNumber}</td>
+								<td>${personnel.appointmentSchoolPersonnelNumber}</td>
+								<td>${personnel.rankCode}</td>
+								<td>${personnel.promotionAppointmentAnnualIncome}</td>
+								<td>${personnel.promotionAppointmentSalaryclass}</td>
+								<td>${personnel.promotionDay}</td>
+								<td>${personnel.promotionAppointmentDay}</td>
+								<td>${personnel.promotionAppointReason}</td>
+								<td>${personnel.promotionRegistrationDate}</td>
+								<td>${personnel.promotionModificationDate}</td>
 							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="personnel" items="${appointmentList}">
-								<tr>
-									<td>${personnel.appointmentSchoolPersonnelNumber}</td>
-									<td>${personnel.personnelCommonAppointmentCode}</td>
-									<td>${personnel.teamCode}</td>
-									<td>${personnel.deptCode}</td>
-									<td>${personnel.jobRankCode}</td>
-									<td>${personnel.jobTypeCode}</td>
-									<td>${personnel.jobGroupCode}</td>
-									<td>${personnel.appointmentAppointDay}</td>
-									<td>${personnel.appointmentRegistrationDate}</td>
-									<td>${personnel.appointmentModificationDate}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<a href="">정규직 </a>
+						</c:forEach>
+					</tbody>
+				</table>
 				</div>
 				<!-- /.container-fluid -->
 	

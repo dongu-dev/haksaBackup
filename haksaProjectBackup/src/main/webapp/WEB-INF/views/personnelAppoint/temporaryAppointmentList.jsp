@@ -1,4 +1,3 @@
-<!-- 정규직임용페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -10,7 +9,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>정규직 임용정보 입력 페이지</title>
+		<title>비정규직 임용 리스트</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,13 +37,13 @@
 		
 		<script>  
 			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addPersonnelAppointment(){
+			function addPersonnelTemporaryAppointment(){
 			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addPermanentAppointment";
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동
-			function personnelAppointmentList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/permanentAppointmentList";
+			function personnelTemporaryAppointmentList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/temporaryAppointmentList";
 			}
 		</script>
 	</head>
@@ -63,73 +62,61 @@
 				<!-- 여기에 내용이 담긴다 -->
 				<h1>인사관리 > 임명관리</h1>
 				<br>
-				<p id="enrolScoreMain">* 정규직 임용 정보 입력</p>
-				<form id="form">
-					<input type='button' class="btn btn-info" onclick='personnelAppointmentList()' value='조회'/>
-					<input type='button' class="btn btn-success" onclick='addPersonnelAppointment()' value='입력'/>
-					<input type='button' class="btn btn-primary" id='savePersonnelAppointment' value='저장'/>
-				</form>
-				<br>
-				<table id="table" class="table table-bordered">
-					<tr>
-						<th>교직원번호</th>
-						<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"></td>
-						
-						<th>지급연봉</th>
-						<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="지급연봉(만원)"></td>
-						
-						<th>연봉구분</th>
-						<td>
-							<select class="form-control" id="">
-								<option>사원</option>
-								<option>대리</option>
-								<option>과장</option>
-								<option>차장</option>
-								<option>부장</option>
-							</select>
-						</td>
-					</tr>
-				  	<tr>
-						<th>경력구분</th>
-						<td>
-							<select class="form-control" id="">
-								<option>신입</option>
-								<option>경력</option>
-							</select>
-						</td>			
-						
-						<th>계약시작기간</th>
-						<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>
-						
-						<th>계약만료기간</th>
-						<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>		
-					</tr>
-					<tr>
-						<th>임용시작기간</th>
-						<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>
-						
-						<th>임용만료기간</th>
-						<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>
-						
-						<th>호봉</th>
-						<td><input type="text" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
-					</tr>
-					<tr>
-						<th>호봉승급월</th>
-						<td><input type="text" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
-		
-						<th>등록일자</th>
-						<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
-				
-						<th>수정일자</th>
-						<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
-					</tr>
-				</table>
+					<p id="enrolScoreMain">* 비정규직 리스트</p>
+					<form id="form">
+						<input type='button' class="btn btn-info" onclick='personnelTemporaryAppointmentList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addPersonnelTemporaryAppointment()' value='입력'/>
+						<input type='button' class="btn btn-primary" onclick='addPersonnelTemporaryAppointment()' value='저장'/>
+					</form>
+					<br>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>교직원번호</th>
+								<th>경력구분</th>
+								<th>계약시작기간</th>
+								<th>계약만료기간</th>
+								<th>임용시작기간</th>
+								<th>임용만료기간</th>
+								<th>임명사유</th>
+								<th>시스템등록일자</th>
+								<th>최종수정일자</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="personnel" items="${temporaryAppointmentList}">
+								<tr>
+									<td>${personnel.appointmentSchoolPersonnelNumber}</td>
+									<td>${personnel.appointmentTemporaryCareerDivision}</td>
+									<td>${personnel.appointmentTemporaryContractStartTerm}</td>
+									<td>${personnel.appointmentTemporaryContractEndTerm}</td>
+									<td>${personnel.appointmentTemporaryAppointmentStartTerm}</td>
+									<td>${personnel.appointmentTemporaryAppointmentEndTerm}</td>
+									<td>${personnel.appointmentTemporaryAppointReason}</td>
+									<td>${personnel.appointmentTemporaryRegistrationDate}</td>
+									<td>${personnel.appointmentTemporaryModificationDate}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.container-fluid -->
+	
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright © Haksa 2018</span>
+						</div>
+					</div>
+				</footer>
+	
 			</div>
 			<!-- /.content-wrapper -->
+	
 		</div>
 		<!-- /#wrapper -->
-		</div>
+	
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fas fa-angle-up"></i>

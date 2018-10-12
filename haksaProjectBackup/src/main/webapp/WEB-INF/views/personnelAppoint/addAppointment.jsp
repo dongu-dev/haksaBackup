@@ -24,9 +24,27 @@
 		<!-- Custom styles for this template-->
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		
+		<style>
+			#enrolScoreMain{
+				text-align : left;
+				font-weight: bold;
+				font-size: 30px;
+			}
+			
+			#form {
+				text-align : right;
+			}
+		</style>
+		
 		<script>  
-			function openWin(){  
-			    window.open("http://www.naver.net", "네이버새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+			// 입력 버튼 눌렀을 시 페이지 이동	
+			function addPersonnelAppointment(){
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addAppointment";
+			}
+			
+			// 조회 버튼 눌렀을 시 페이지 이동
+			function personnelAppointmentList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/appointmentList";
 			}
 		</script>
 	</head>
@@ -43,103 +61,73 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 임용정보입력</h1>
+				<h1>인사관리 > 임명관리</h1>
 				<br>
-				<fieldset>
-					<legend>임용정보입력 페이지</legend><br>
-					<form class="form-horizontal">
-						<div class="row" >
-							<label class="col-sm-1 control-label">교직원번호</label>
-							<div class="col-xs-10">
-								<input type="text" class="form-control" placeholder="교직원번호">
-							</div>
-							<label for="inputEmail4" class="col-sm-1 control-label">발령직종</label>
-							<div class="col-xs-10">
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-						</div><br>
-						<div class="row">
-							<label for="inputEmail4" class="col-sm-1 control-label">발령코드</label>
-							<div class="col-xs-10">
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
-							<label for="inputEmail4" class="col-sm-1 control-label">발령직군</label>
-							<div class="col-xs-10">
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-						</div><br>
-						<div class="row">
-							<label for="inputEmail4" class="col-sm-1 control-label">발령팀</label>
-							<div class="col-xs-10">
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
-							<label for="inputEmail3" class="col-sm-1 control-label">임명일</label>
-							<div class="col-xs-10">
-								<input type="date" class="form-control" id="inputEmail6">
-							</div>
-						</div><br>
-						<div class="row">
-							<label for="inputEmail4" class="col-sm-1 control-label">발령부서</label>
-							<div class="col-xs-10">
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
-							<label for="inputEmail3" class="col-sm-1 control-label">등록일자</label>
-							<div class="col-xs-10">
-								<input type="date" class="form-control" id="inputEmail6">
-							</div>
-						</div><br>
-						<div class="row">
-							<label for="inputEmail4" class="col-sm-1 control-label">발령직급</label>
-							<div class="col-xs-10">
-								<select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-								</select>
-							</div>
-							&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
-							<label for="inputEmail3" class="col-sm-1 control-label">수정일자</label>
-							<div class="col-xs-10">
-								<input type="date" class="form-control" id="inputEmail6">
-							</div>
-						</div><br>
-					</form>
-				</fieldset>
+				<form id="form">
+					<input type='button' class="btn btn-info" onclick='personnelAppointmentList()' value='조회'/>
+					<input type='button' class="btn btn-success" onclick='addPersonnelAppointment()' value='입력'/>
+					<input type='button' class="btn btn-primary" id='savePersonnelAppointment' value='저장'/>
+				</form>
+				<br>
+				<table class="table table-bordered">
+					<tr>
+						<td scope="col" colspan="9">
+							<p id="enrolScoreMain">* 기본임용입력 페이지</p>
+						</td>
+					</tr>
+					<tr>
+						<th>교직원번호</th>
+						<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"></td>
+						<th>발령코드</th>
+						<td>
+							<select class="form-control" id="" style="background-color: #e2e2e2;">
+								<option></option>
+							</select>
+						</td>
+						<th>발령팀</th>
+						<td>
+							<select class="form-control" id="">
+								<option></option>
+							</select>
+						</td>
+					</tr>
+				  	<tr>
+						<th>발령부서</th>
+						<td>
+							<select class="form-control" id="">
+								<option></option>
+							</select>
+						</td>			
+						<th>발령직급</th>
+						<td>
+							<select class="form-control" id="">
+								<option></option>
+							</select>
+						</td>
+						<th>발령직종</th>
+						<td>
+							<select class="form-control" id="">
+								<option></option>
+							</select>
+						</td>		
+					</tr>
+					<tr>
+						<th>발령직종</th>
+						<td>
+							<select class="form-control" id="">
+								<option></option>
+							</select>
+						</td>	
+						<th>임명일</th>
+						<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>
+						<th>등록일자</th>
+						<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
+					</tr>
+					<tr>
+						<th>수정일자</th>
+						<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
+					</tr>
+				</table>
 			</div>
 			<!-- /.content-wrapper -->
 		</div>

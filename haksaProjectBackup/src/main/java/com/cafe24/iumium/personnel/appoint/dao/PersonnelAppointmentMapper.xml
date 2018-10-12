@@ -4,24 +4,61 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.cafe24.iumium.personnel.appoint.dao.PersonnelAppointmentMapper">
+	<!-- 기본임용 리스트 조회 쿼리 -->
 	<select id="personnelAppointmentList"
 			resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment">
 		SELECT 
 		appointment_school_personnel_number AS appointmentSchoolPersonnelNumber
-		, personnel_common_appointment_code AS personnelCommonAppointmentCode
-		, haksa_team.team_code AS teamCode
-		, haksa_department.dept_code AS deptCode
-		, haksa_job_rank.job_rank_code AS jobRankCode
-		, haksa_job_type.job_type_code AS jobTypeCode
-		, haksa_job_group.job_group_code AS jobGroupCode
-		, appointment_appoint_day AS appointmentAppointDay
-		, appointment_registration_date AS appointmentRegistrationDate
-		, appointment_modification_date AS appointmentModificationDate
+			, personnel_common_appointment_code AS personnelCommonAppointmentCode
+			, haksa_team.team_code AS teamCode
+			, haksa_department.dept_code AS deptCode
+			, haksa_job_rank.job_rank_code AS jobRankCode
+			, haksa_job_type.job_type_code AS jobTypeCode
+			, haksa_job_group.job_group_code AS jobGroupCode
+			, appointment_appoint_day AS appointmentAppointDay
+			, appointment_registration_date AS appointmentRegistrationDate
+			, appointment_modification_date AS appointmentModificationDate
 		FROM ilban_appointment, haksa_team, haksa_department, haksa_job_rank, haksa_job_type, haksa_job_group
 		WHERE ilban_appointment.team_code = haksa_team.team_code 
 		AND ilban_appointment.dept_code = haksa_department.dept_code 
 		AND ilban_appointment.job_rank_code = haksa_job_rank.job_rank_code 
 		AND ilban_appointment.job_type_code = haksa_job_type.job_type_code
 		AND ilban_appointment.job_group_code = haksa_job_group.job_group_code
+	</select>
+	
+	<!-- 정규직 리스트 조회 쿼리 -->
+	<select id="personnelPermanentAppointmentList"
+			resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment">
+		SELECT 
+			appointment_school_personnel_number AS appointmentSchoolPersonnelNumber
+			, appointment_permanent_annual_income AS appointmentPermanentAnnualIncome
+			, appointment_permanent_annual_income_division AS appointmentPermanentAnnualIncomeDivision
+			, appointment_permanent_career_division AS appointmentPermanentCareerDivision
+			, appointment_permanent_contract_start_term AS appointmentPermanentContractStartTerm
+			, appointment_permanent_contract_end_term AS appointmentPermanentContractEndTerm
+			, appointment_permanent_appointment_start_term AS appointmentPermanentAppointmentStartTerm
+			, appointment_permanent_appointment_end_term AS appointmentPermanentAppointmentEndTerm
+			, appointment_permanent_salaryclass AS appointmentPermanentSalaryclass
+			, appointment_permanent_salaryclass_promotion AS appointmentPermanentSalaryclassPromotion
+			, appointment_permanent_appoint_reason AS appointmentPermanentAppointReason
+			, appointment_permanent_appoint_reason AS appointmentPermanentRegistrationDate
+			, appointment_permanent_modification_date AS appointmentPermanentModificationDate
+		FROM ilban_appointment_permanent
+	</select> 
+	
+	<!-- 비정규직 리스트 조회 쿼리 -->
+	<select id="personneltemporaryAppointmentList"
+			resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment">
+	SELECT 
+		appointment_school_personnel_number AS appointmentSchoolPersonnelNumber
+		, appointment_temporary_career_division AS appointmentTemporaryCareerDivision
+		, appointment_temporary_contract_start_term AS appointmentTemporaryContractStartTerm
+		, appointment_temporary_contract_end_term AS appointmentTemporaryContractEndTerm
+		, appointment_temporary_appointment_start_term AS appointmentTemporaryAppointmentStartTerm
+		, appointment_temporary_appointment_end_term AS appointmentTemporaryAppointmentEndTerm
+		, appointment_temporary_appoint_reason AS appointmentTemporaryAppointReason
+		, appointment_temporary_registration_date AS appointmentTemporaryRegistrationDate
+		, appointment_temporary_modification_date AS appointmentTemporaryModificationDate
+	FROM ilban_appointment_temporary
 	</select>
 </mapper>

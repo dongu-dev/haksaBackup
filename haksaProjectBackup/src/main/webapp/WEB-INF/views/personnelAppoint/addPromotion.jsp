@@ -36,43 +36,51 @@
 			}
 		</style>
 		
+		<!-- ajax 에서 jquery 사용하기 위한 페이지 불러옴 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>  
-			// 입력 버튼 눌렀을 시 페이지 이동
+			// 입력 버튼 눌렀을 시 페이지 이동	
 			function addPersonnelPromotion(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommonCode";
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addPromotion";
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동
 			function personnelPromotionList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?a=" + 'click';
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/promotionProcessList";
 			}
 			
 			// 저장 버튼 눌렀을 시 비동기 방식을 이용한 데이터 값 저장
-			function savePersonnelPromotion(){
-			    let promotionNumber = ${'#promotionNumber'}.val();
-			    let appointmentSchoolPersonnelNumber = ${'#appointmentSchoolPersonnelNumber'}.val();
-			    let rankCode = ${'#rankCode'}.val();
-			    let promotionAppointmentAnnualIncome = ${'#promotionAppointmentAnnualIncome'}.val();
-			    let promotionDay = ${'#promotionDay'}.val();
-			    let promotionRegistrationDate = ${'#promotionRegistrationDate'}.val();
-			    let promotionAppointmentSalaryclass = ${'#promotionAppointmentSalaryclass'}.val();
-			    let promotionAppointmentDay = ${'#promotionAppointmentDay'}.val();
-			    let promotionModificationDate = ${'#promotionModificationDate'}.val(); 
-			    let promotionAppointReason = ${'#promotionAppointReason'}.val();
-			    
-			    // data:{dto의 변수명 : let으로 선언한 변수명}
-			    $ajax({
-			    	url:'/personnelAppoint/savePromotion'
-			    	, type:'GET'
-			    	, dataType:'JSON'
-			    	, data: {promotionNumber : promotionNumber, appointmentSchoolPersonnelNumber : appointmentSchoolPersonnelNumber
-			    		, rankCode : rankCode, promotionAppointmentAnnualIncome : promotionAppointmentAnnualIncome
-			    		, promotionDay : promotionDay, promotionRegistrationDate : promotionRegistrationDate
-			    		, promotionAppointmentSalaryclass : promotionAppointmentSalaryclass, promotionAppointmentDay : promotionAppointmentDay
-			    		, promotionModificationDate : promotionModificationDate, promotionAppointReason : promotionAppointReason}
-			    	, 
-			    })
-			}		
+			$(document).ready(function(){
+				$('#savePersonnelPromotion').click(function(){
+					let obj = new Object();
+					
+					obj.promotionNumber = $('#promotionNumber').val();
+					obj.appointmentSchoolPersonnelNumber = $('#appointmentSchoolPersonnelNumber').val();
+					obj.rankCode = $('#rankCode').val();
+					obj.promotionAppointmentAnnualIncome = $('#promotionAppointmentAnnualIncome').val();
+					obj.promotionAppointmentSalaryclass = $('#promotionAppointmentSalaryclass').val();
+					obj.promotionDay = $('#promotionDay').val();
+					obj.promotionAppointmentDay = $('#promotionAppointmentDay').val();
+					obj.promotionAppointReason = $('#promotionAppointReason').val();
+					obj.promotionRegistrationDate = $('#promotionRegistrationDate').val();
+					obj.promotionModificationDate = $('#promotionModificationDate').val(); 
+					
+				    
+					let jsonData = JSON.stringify(obj);
+				    
+				    // data:{dto의 변수명 : let으로 선언한 변수명}
+				    $.ajax({
+				    	url:'/personnelAppoint/savePromotion'
+				    	, type:'POST'
+				    	, dataType:'JSON'
+				    	, data: jsonData
+				    	, contentType: 'application/json; charset=UTF-8'
+				    	, success: function(data) {
+				    		location.href='${pageContext.request.contextPath}/personnelAppoint/addPromotion';
+				    	}
+				    })
+				})
+			})
 		</script>
 	</head>
 	
@@ -91,9 +99,9 @@
 					<br>
 					<!-- 인사기본사항 -->
 					<form id="form">
-						<input type='button' class="btn btn-info" name='a' onclick='personnelPromotionList()' value='조회'/>
+						<input type='button' class="btn btn-info" onclick='personnelPromotionList()' value='조회'/>
 						<input type='button' class="btn btn-success" onclick='addPersonnelPromotion()' value='입력'/>
-						<input type='button' class="btn btn-success" onclick='savePersonnelPromotion()' value='저장'/>
+						<input type='button' class="btn btn-primary" id='savePersonnelPromotion' value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
@@ -104,11 +112,11 @@
 						</tr>
 						<tr>
 							<th>승진번호</th>
-							<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"><td>
+							<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"></td>
 							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"><td>
+							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"></td>
 							<th>직급</th>
-							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" readonly><td>
+							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" ></td>
 				   		</tr>
 				   		<!-- 발령사항 -->	
 				   		<tr align="right">
@@ -118,20 +126,20 @@
 						</tr>
 						<tr>
 							<th>발령연봉</th>
-							<td><input type="text" class="form-control" name="promotionAppointmentAnnualIncome" id="promotionAppointmentAnnualIncome" placeholder="발령연봉"><td>
+							<td><input type="text" class="form-control" name="promotionAppointmentAnnualIncome" id="promotionAppointmentAnnualIncome" placeholder="발령연봉"></td>
 							<th>승진일</th>
-							<td><input type="date" class="form-control" name="promotionDay" id="promotionDay" placeholder="승진일"><td>
+							<td><input type="date" class="form-control" name="promotionDay" id="promotionDay" placeholder="승진일"></td>
 							<th>등록일자</th>
-							<td><input type="date" class="form-control" name="promotionRegistrationDate" id="promotionRegistrationDate" placeholder="등록일자"><td>
+							<td><input type="date" class="form-control" name="promotionRegistrationDate" id="promotionRegistrationDate" placeholder="등록일자"></td>
 							
 						</tr>
 						<tr>
 							<th>발령호봉</th>
-							<td><input type="text" class="form-control" name="promotionAppointmentSalaryclass" id="promotionAppointmentSalaryclass" placeholder="발령호봉"><td>
+							<td><input type="text" class="form-control" name="promotionAppointmentSalaryclass" id="promotionAppointmentSalaryclass" placeholder="발령호봉"></td>
 							<th>임용일</th>
-							<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"><td>
+							<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>
 							<th>수정일자</th>
-							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"><td>
+							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
 						</tr>
 						<tr>
 							<th>임명사유</th>
