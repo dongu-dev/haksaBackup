@@ -2,6 +2,9 @@ package com.cafe24.iumium;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +102,13 @@ public class PersonnelAppointController {
 		model.addAttribute("promotionList", map.get("promotionList"));
 		
 		return "personnelAppoint/promotionProcessList";
+	}
+	
+	// 인사기본사항 페이지 호출
+	@RequestMapping(value="/personnelAppoint/addPersonnelBasicDetail", method = RequestMethod.GET)
+	public String addPersonnelBasicDetail() {
+		logger.info("승진 입력 페이지 호출");
+		return "personnelAppoint/addPersonnelBasicDetail";	
 	}
 		
 }

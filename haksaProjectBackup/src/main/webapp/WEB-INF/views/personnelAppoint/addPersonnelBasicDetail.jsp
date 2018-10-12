@@ -1,4 +1,4 @@
-<!--  승진처리 페이지 -->
+<!-- 인사기본사항 입력 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>승진처리 페이지</title>
+		<title>임용 리스트</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,53 +36,16 @@
 			}
 		</style>
 		
-		<!-- ajax 에서 jquery 사용하기 위한 페이지 불러옴 -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>  
 			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addPersonnelPromotion(){
-			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addPromotion";
+			function addPersonnelAppointment(){
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addAppointment";
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동
-			function personnelPromotionList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/promotionProcessList";
+			function personnelAppointmentList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/appointmentList";
 			}
-			
-			// 저장 버튼 눌렀을 시 비동기 방식을 이용한 데이터 값 저장
-			$(document).ready(function(){
-				$('#savePersonnelPromotion').click(function(){
-					let obj = new Object();
-					
-					obj.promotionNumber = $('#promotionNumber').val();
-					obj.appointmentSchoolPersonnelNumber = $('#appointmentSchoolPersonnelNumber').val();
-					obj.rankCode = $('#rankCode').val();
-					obj.promotionAppointmentAnnualIncome = $('#promotionAppointmentAnnualIncome').val();
-					obj.promotionAppointmentSalaryclass = $('#promotionAppointmentSalaryclass').val();
-					obj.promotionDay = $('#promotionDay').val();
-					obj.promotionAppointmentDay = $('#promotionAppointmentDay').val();
-					obj.promotionAppointReason = $('#promotionAppointReason').val();
-					obj.promotionRegistrationDate = $('#promotionRegistrationDate').val();
-					obj.promotionModificationDate = $('#promotionModificationDate').val(); 
-					
-				    
-					let jsonData = JSON.stringify(obj);
-				    
-				    // data:{dto의 변수명 : let으로 선언한 변수명}
-				    $.ajax({
-				    	url:"/personnelAppoint/savePromotion"
-				    	, type:'POST'
-				    	, dataType:'JSON'
-				    	, data: jsonData
-				    	, contentType: 'application/json; charset=UTF-8'
-				    	, success: function(data) {
-				    		location.href='${pageContext.request.contextPath}/personnelAppoint/addPromotion';
-				    	}, error: function(request,status,error){
-				            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				        }
-				    })
-				})
-			})
 		</script>
 	</head>
 	
@@ -97,9 +60,9 @@
 			<div id="content-wrapper">
 	
 				<div class="container-fluid">
-					<h1>인사관리 > 승진처리(총무,교무)</h1>
-					<br>
-					<!-- 인사기본사항 -->
+				<!-- 여기에 내용이 담긴다 -->
+				<h1>인사관리 > 임명관리</h1>
+				<br>
 					<form id="form">
 						<input type='button' class="btn btn-info" onclick='personnelPromotionList()' value='조회'/>
 						<input type='button' class="btn btn-success" onclick='addPersonnelPromotion()' value='입력'/>
@@ -109,50 +72,84 @@
 					<table class="table table-bordered">
 						<tr>
 							<td scope="col" colspan="10">
+								<p id="enrolScoreMain">* 교직원 기본임용사항</p>
+							</td>
+						</tr>
+						<tr>
+							<th>교직원번호</th>
+							<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"></td>
+							<th>발령팀</th>
+							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"></td>
+							<th>발령부서</th>
+							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" ></td>
+						</tr>	
+						<tr>
+							<th>발령직급</th>
+							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" ></td>
+							<th>발령직급</th>
+							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" ></td>
+							<th>발령직군</th>
+							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" ></td>
+				   		</tr>
+				   		<!-- 인사기본사항 -->	
+				   		<tr align="right">
+							<td scope="col" colspan="10">
 								<p id="enrolScoreMain">* 인사기본사항</p>
 							</td>
 						</tr>
 						<tr>
-							<th>승진번호</th>
-							<td><input type="text" class="form-control" name="promotionNumber" id="promotionNumber" placeholder="승진번호"></td>
-							<th>교직원번호</th>
-							<td><input type="text" class="form-control" name="appointmentSchoolPersonnelNumber" id="appointmentSchoolPersonnelNumber" placeholder="교직원번호"></td>
-							<th>직급</th>
-							<td><input type="text" class="form-control" name="rankCode" id="rankCode" placeholder="직급" style="background-color: #e2e2e2;" ></td>
-				   		</tr>
-				   		<!-- 발령사항 -->	
-				   		<tr align="right">
-							<td scope="col" colspan="10">
-								<p id="enrolScoreMain">* 발령사항</p>
-							</td>
-						</tr>
-						<tr>
-							<th>발령연봉</th>
+							<th>채용분류</th>
 							<td><input type="text" class="form-control" name="promotionAppointmentAnnualIncome" id="promotionAppointmentAnnualIncome" placeholder="발령연봉"></td>
-							<th>승진일</th>
+							<th>연봉구분</th>
 							<td><input type="date" class="form-control" name="promotionDay" id="promotionDay" placeholder="승진일"></td>
-							<th>등록일자</th>
+							<th>현직(전직)기관</th>
 							<td><input type="date" class="form-control" name="promotionRegistrationDate" id="promotionRegistrationDate" placeholder="등록일자"></td>
 							
 						</tr>
 						<tr>
-							<th>발령호봉</th>
+							<th>생년월일</th>
+							<td><input type="text" class="form-control" name="promotionAppointmentAnnualIncome" id="promotionAppointmentAnnualIncome" placeholder="발령연봉"></td>
+							<th>재임용여부</th>
+							<td><input type="date" class="form-control" name="promotionDay" id="promotionDay" placeholder="승진일"></td>
+							<th>겸직여부</th>
+							<td><input type="date" class="form-control" name="promotionRegistrationDate" id="promotionRegistrationDate" placeholder="등록일자"></td>
+							
+						</tr>
+						<tr>
+							<th>사무실 전화번호</th>
 							<td><input type="text" class="form-control" name="promotionAppointmentSalaryclass" id="promotionAppointmentSalaryclass" placeholder="발령호봉"></td>
-							<th>임용일</th>
+							<th>정년보장</th>
 							<td><input type="date" class="form-control" name="promotionAppointmentDay" id="promotionAppointmentDay" placeholder="임용일"></td>
-							<th>수정일자</th>
+							<th>현직(전직)직위</th>
 							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
 						</tr>
 						<tr>
-							<th>임명사유</th>
-							<td colspan="6"><textarea class="form-control" name="promotionAppointReason" id="promotionAppointReason" ></textarea></td>
+							<th>음양구분</th>
+							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
+							<th>센터입소일</th>
+							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
+							<th>시스템등록일자</th>
+							<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
 						</tr>
 					</table>
 				</div>
-			<!-- /.content-wrapper -->
+				<!-- /.container-fluid -->
+	
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright © Haksa 2018</span>
+						</div>
+					</div>
+				</footer>
+	
 			</div>
-		<!-- /#wrapper -->
+			<!-- /.content-wrapper -->
+	
 		</div>
+		<!-- /#wrapper -->
+	
 		<!-- Scroll to Top Button-->
 		<a class="scroll-to-top rounded" href="#page-top"> <i
 			class="fas fa-angle-up"></i>

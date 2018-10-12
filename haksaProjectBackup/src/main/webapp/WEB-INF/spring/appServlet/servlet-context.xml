@@ -10,8 +10,27 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
-
+	<mvc:annotation-driven>
+		<!-- messageConvertert -->
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+		
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- resources폴더를 정적으로 이용가능하게 해주는 빈등록 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -38,7 +57,6 @@
         <property name="username" value="iumium"/>
         <property name="password" value="darkhosoon1!"/>
     </bean>
-    
         <!-- mybatis설정 1. SqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- mybatis 세션생성시 사용할 dataSource주입 -->
