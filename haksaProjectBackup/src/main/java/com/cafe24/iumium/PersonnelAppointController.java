@@ -65,10 +65,17 @@ public class PersonnelAppointController {
 		return "personnelAppoint/permanentAppointmentList";	
 	}
 	
+	// 비정규직 임용 페이지 호출
+	@RequestMapping(value="/personnelAppoint/addTemporaryAppointment", method = RequestMethod.GET)
+	public String addTemporaryAppointment() {
+		logger.info("비정규직 임용 리스트 페이지 호출");
+		return "personnelAppoint/addTemporaryAppointment";
+	}
+	
 	// 비정규직 임용 리스트 페이지 호출
 	@RequestMapping(value="/personnelAppoint/temporaryAppointmentList", method = RequestMethod.GET)
 	public String temporaryAppointmentList(Model model) {
-		logger.info("임용 리스트 페이지 호출");
+		logger.info("비정규직 임용 리스트 페이지 호출");
 		
 		Map<String, Object> temporaryAppointmentList = personnelAppointmentService.personneltemporaryAppointmentList();
 				
@@ -96,7 +103,7 @@ public class PersonnelAppointController {
 	// 승진처리 리스트 페이지 호출
 	@RequestMapping(value="/personnelAppoint/promotionProcessList", method = RequestMethod.GET)
 	public String promotionProcessList(Model model) {
-		logger.info("승진 입력 페이지 호출");
+		logger.info("승진 처리 리스트 페이지 호출");
 		Map<String, Object> map = personnelPromotionService.personnelPromotionList();
 		
 		model.addAttribute("promotionList", map.get("promotionList"));
@@ -107,7 +114,7 @@ public class PersonnelAppointController {
 	// 인사기본사항 페이지 호출
 	@RequestMapping(value="/personnelAppoint/addPersonnelBasicDetail", method = RequestMethod.GET)
 	public String addPersonnelBasicDetail() {
-		logger.info("승진 입력 페이지 호출");
+		logger.info("인사기본사항 페이지 호출");
 		return "personnelAppoint/addPersonnelBasicDetail";	
 	}
 		

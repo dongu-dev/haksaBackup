@@ -38,12 +38,12 @@
 		
 		<script>  
 			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addPersonnelAppointment(){
+			function addPermanentAppointment(){
 			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addPermanentAppointment";
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동
-			function personnelAppointmentList(){
+			function permanentAppointmentList(){
 			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/permanentAppointmentList";
 			}
 		</script>
@@ -65,9 +65,9 @@
 				<br>
 				<p id="enrolScoreMain">* 정규직 임용 정보 입력</p>
 				<form id="form">
-					<input type='button' class="btn btn-info" onclick='personnelAppointmentList()' value='조회'/>
-					<input type='button' class="btn btn-success" onclick='addPersonnelAppointment()' value='입력'/>
-					<input type='button' class="btn btn-primary" id='savePersonnelAppointment' value='저장'/>
+					<input type='button' class="btn btn-info" onclick='permanentAppointmentList()' value='조회'/>
+					<input type='button' class="btn btn-success" onclick='addPermanentAppointment()' value='입력'/>
+					<input type='button' class="btn btn-primary" id='savePermanentAppointment' value='저장'/>
 				</form>
 				<br>
 				<table id="table" class="table table-bordered">
@@ -123,6 +123,10 @@
 				
 						<th>수정일자</th>
 						<td><input type="date" class="form-control" name="promotionModificationDate" id="promotionModificationDate" placeholder="수정일자"></td>
+					</tr>
+					<tr>
+						<th>임명사유</th>
+						<td colspan="6"><textarea class="form-control" name="promotionAppointReason" id="promotionAppointReason" ></textarea></td>
 					</tr>
 				</table>
 			</div>

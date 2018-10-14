@@ -9,7 +9,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>인사공통코드 리스트</title>
+		<title>인사공통코드 입력화면</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -23,6 +23,18 @@
 		<!-- Custom styles for this template-->
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
 		
+		<style>
+			#enrolScoreMain{
+				text-align : left;
+				font-weight: bold;
+				font-size: 30px;
+			}
+			
+			#form {
+				text-align : right;
+			}
+		</style>
+		
 		<script>
 			function addPersonnelCommonCode(){
 			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommonCode";
@@ -31,7 +43,7 @@
 			function personnelCommonCodeList(){
 			    window.location.href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?a=" + 'click';
 			}
-		</script>	
+		</script>
 	</head>
 	
 	<body id="page-top">
@@ -46,21 +58,39 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 인사공통코드</h1>
-				<br>
-				<input type='button' name='a' onclick='personnelCommonCodeList()' value='조회'/>
-				<input type='button' onclick='addPersonnelCommonCode()' value='입력'/>
-				<table border="1">
-					<thead>
+					<h1>인사관리 > 인사공통코드 관리</h1>
+					<br>
+					<p id="enrolScoreMain">* 인사공통코드 입력</p>
+					<form id="form">
+						<input type='button' class="btn btn-info" onclick='personnelCommonCodeList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addPersonnelCommonCode()' value='입력'/>
+						<input type='button' class="btn btn-primary" id='' value='저장'/>
+					</form>
+					<br>
+					<table class="table table-bordered">
 						<tr>
 							<th>발령코드</th>
+							<td><input type="text" class="form-control" name="commonAppointmentCode" id="commonAppointmentCode" placeholder="발령코드"></td>
+							
 							<th>발령코드명</th>
+							<td><input type="text" class="form-control" name="commonAppointmentCodeName" id="commonAppointmentCodeName" placeholder="발령코드명"></td>
+							
 							<th>사용유무</th>
-							<th>시스템등록일자</th>
-							<th>최종수정일자</th>
+							<td>
+								<select class="form-control">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</td>
 						</tr>
-					</thead>
-				</table>
+						<tr>
+							<th>등록일자</th>
+							<td><input type="date" class="form-control" name="commonRegistrationDate" id="commonRegistrationDate" placeholder="등록일자"></td>
+							
+							<th>수정일자</th>
+							<td><input type="date" class="form-control" name="commonModificationDate" id="commonModificationDate" placeholder="수정일자"></td>
+						</tr>
+					</table>
 				</div>
 				<!-- /.container-fluid -->
 	

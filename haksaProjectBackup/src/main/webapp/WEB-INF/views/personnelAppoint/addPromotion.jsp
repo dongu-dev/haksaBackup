@@ -39,12 +39,12 @@
 		<!-- ajax 에서 jquery 사용하기 위한 페이지 불러옴 -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>  
-			// 입력 버튼 눌렀을 시 페이지 이동	
+			// 입력 버튼 눌렀을 시 입력 페이지 이동	
 			function addPersonnelPromotion(){
 			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addPromotion";
 			}
 			
-			// 조회 버튼 눌렀을 시 페이지 이동
+			// 조회 버튼 눌렀을 시 조회 페이지 이동
 			function personnelPromotionList(){
 			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/promotionProcessList";
 			}

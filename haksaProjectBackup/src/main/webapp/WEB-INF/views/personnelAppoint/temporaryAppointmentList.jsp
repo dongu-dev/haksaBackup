@@ -37,12 +37,12 @@
 		
 		<script>  
 			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addPersonnelTemporaryAppointment(){
-			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addPermanentAppointment";
+			function addTemporaryAppointment(){
+			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/addTemporaryAppointment";
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동
-			function personnelTemporaryAppointmentList(){
+			function temporaryAppointmentList(){
 			    window.location.href="${pageContext.request.contextPath}/personnelAppoint/temporaryAppointmentList";
 			}
 		</script>
@@ -64,9 +64,9 @@
 				<br>
 					<p id="enrolScoreMain">* 비정규직 리스트</p>
 					<form id="form">
-						<input type='button' class="btn btn-info" onclick='personnelTemporaryAppointmentList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addPersonnelTemporaryAppointment()' value='입력'/>
-						<input type='button' class="btn btn-primary" onclick='addPersonnelTemporaryAppointment()' value='저장'/>
+						<input type='button' class="btn btn-info" onclick='temporaryAppointmentList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addTemporaryAppointment()' value='입력'/>
+						<input type='button' class="btn btn-primary" onclick='' value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
