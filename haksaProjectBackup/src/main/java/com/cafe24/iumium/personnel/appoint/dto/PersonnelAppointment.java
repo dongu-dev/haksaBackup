@@ -1,16 +1,16 @@
 package com.cafe24.iumium.personnel.appoint.dto;
 
 public class PersonnelAppointment {
-	public String appointmentSchoolPersonnelNumber;
-	public String personnelCommonAppointmentCode;
-	public String teamCode;
-	public String deptCode;
-	public String jobRankCode;
-	public String jobTypeCode;
-	public String jobGroupCode;
-	public String appointmentAppointDay;
-	public String appointmentRegistrationDate;
-	public String appointmentModificationDate;
+	private String appointmentSchoolPersonnelNumber;
+	private String personnelCommonAppointmentCode;
+	private String teamCode;
+	private String deptCode;
+	private String jobRankCode;
+	private String jobTypeCode;
+	private String jobGroupCode;
+	private String appointmentAppointDay;
+	private String appointmentRegistrationDate;
+	private String appointmentModificationDate;
 	
 	public String getAppointmentSchoolPersonnelNumber() {
 		return appointmentSchoolPersonnelNumber;

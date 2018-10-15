@@ -1,4 +1,3 @@
-<!-- 상벌코드 리스트 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -10,7 +9,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>상벌코드 리스트</title>
+		<title>증명서코드 리스트</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,13 +37,13 @@
 		
 		<script>  
 			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addRewardPunishmentCode(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/addRewardPunishment";
+			function addCertificateCode(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/addCertificate";
 			}
 			
 			// 조회 버튼 눌렀을 시 페이지 이동
-			function rewardPunishmentList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/rewardPunishmentList";
+			function certificateCodeList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/certificateList";
 			}
 		</script>
 	</head>
@@ -61,37 +60,37 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 상벌코드 관리</h1>
+				<h1>인사관리 > 증명서코드 관리</h1>
 				<br>
-					<p id="enrolScoreMain">* 상벌코드 관리 리스트</p>
+					<p id="enrolScoreMain">* 증명서코드 리스트</p>
 					<form id="form">
-						<input type='button' class="btn btn-info" onclick='rewardPunishmentList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addRewardPunishmentCode()' value='입력'/>
+						<input type='button' class="btn btn-info" onclick='certificateCodeList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addCertificateCode()' value='입력'/>
 						<input type='button' class="btn btn-primary" onclick='' value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<th>상벌코드</th>
-								<th>상벌코드명</th>
+								<th>증명서코드</th>
+								<th>증명서코드명</th>
 								<th>변경사유</th>
-								<th>상벌구분</th>
-								<th>사용유무</th>
-								<th>시스템등록일자</th>
-								<th>최종수정일자</th>
+								<th>인사/급여 구분</th>
+								<th>사용여부</th>
+								<th>등록일자</th>
+								<th>수정일자</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="personnel" items="${rewardPunishmentCodeList}">
+							<c:forEach var="personnel" items="${getCertificateList}">
 								<tr>
-									<td>${personnel.rewardPunishmentCode}</td>
-									<td>${personnel.rewardPunishmentCodeName}</td>
-									<td>${personnel.rewardChangeReasonCause}</td>
-									<td>${personnel.rewardPunishmentDivision}</td>
-									<td>${personnel.rewardPunishmentUseExistenceNonexistence}</td>
-									<td>${personnel.rewardPunishmentRegistrationDate}</td>
-									<td>${personnel.rewardPunishmentModificationDate}</td>
+									<td>${personnel.certificateCode}</td>
+									<td>${personnel.certificateCodeName}</td>
+									<td>${personnel.certificateChangeReasonCause}</td>
+									<td>${personnel.certificatePersonnelPayDivision}</td>
+									<td>${personnel.certificateUseExistenceNonexistence}</td>
+									<td>${personnel.certificateRegistrationDate}</td>
+									<td>${personnel.certificateModificationDate}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

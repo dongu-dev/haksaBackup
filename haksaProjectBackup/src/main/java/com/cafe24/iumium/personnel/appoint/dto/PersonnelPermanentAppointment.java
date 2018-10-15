@@ -1,20 +1,20 @@
 package com.cafe24.iumium.personnel.appoint.dto;
 
 public class PersonnelPermanentAppointment {
-	public String appointmentSchoolPersonnelNumber;
-	public int appointmentPermanentAnnualIncome;
-	public String appointmentPermanentAnnualIncomeDivision;
-	public String appointmentPermanentCareerDivision;
-	public String appointmentPermanentContractStartTerm;
-	public String appointmentPermanentContractEndTerm;
-	public String appointmentPermanentAppointmentStartTerm;
-	public String appointmentPermanentAppointmentEndTerm;
-	public int appointmentPermanentSalaryclass;
-	public String appointmentPermanentSalaryclassPromotion;
-	public String appointmentPermanentAppointReason;
-	public String appointmentPermanentRegistrationDate;
-	public String appointmentPermanentModificationDate;
-	public String getAppointmentSchoolPersonnelNumber() {
+	private String appointmentSchoolPersonnelNumber;
+	private int appointmentPermanentAnnualIncome;
+	private String appointmentPermanentAnnualIncomeDivision;
+	private String appointmentPermanentCareerDivision;
+	private String appointmentPermanentContractStartTerm;
+	private String appointmentPermanentContractEndTerm;
+	private String appointmentPermanentAppointmentStartTerm;
+	private String appointmentPermanentAppointmentEndTerm;
+	private int appointmentPermanentSalaryclass;
+	private String appointmentPermanentSalaryclassPromotion;
+	private String appointmentPermanentAppointReason;
+	private String appointmentPermanentRegistrationDate;
+	private String appointmentPermanentModificationDate;
+	private String getAppointmentSchoolPersonnelNumber() {
 		return appointmentSchoolPersonnelNumber;
 	}
 	public void setAppointmentSchoolPersonnelNumber(String appointmentSchoolPersonnelNumber) {

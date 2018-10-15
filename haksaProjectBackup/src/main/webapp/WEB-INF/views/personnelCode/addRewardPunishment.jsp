@@ -38,11 +38,11 @@
 		
 		<script>
 			function addRewardPunishmentCode(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommonCode";
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/addRewardPunishment";
 			}
 			
 			function rewardPunishmentList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?a=" + 'click';
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/rewardPunishmentList";
 			}
 		</script>
 	</head>

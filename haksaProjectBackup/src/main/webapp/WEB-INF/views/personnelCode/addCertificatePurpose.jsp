@@ -1,4 +1,4 @@
-<!-- 상벌코드 리스트 -->
+<!-- 증명서용도코드 입력 페이지 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 		<meta name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-		<title>상벌코드 리스트</title>
+		<title>증명서용도코드 입력화면</title>
 		
 		<!-- Bootstrap core CSS-->
 		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -36,15 +36,13 @@
 			}
 		</style>
 		
-		<script>  
-			// 입력 버튼 눌렀을 시 페이지 이동	
-			function addRewardPunishmentCode(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/addRewardPunishment";
+		<script>
+			function addCertificatePurpose(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/addCertificatePurpose";
 			}
 			
-			// 조회 버튼 눌렀을 시 페이지 이동
-			function rewardPunishmentList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/rewardPunishmentList";
+			function certificatePurposeList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/certificatePurposeList";
 			}
 		</script>
 	</head>
@@ -61,40 +59,49 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 상벌코드 관리</h1>
-				<br>
-					<p id="enrolScoreMain">* 상벌코드 관리 리스트</p>
+					<h1>인사관리 > 증명서용도코드 관리</h1>
+					<br>
+					<p id="enrolScoreMain">* 증명서용도코드 입력</p>
 					<form id="form">
-						<input type='button' class="btn btn-info" onclick='rewardPunishmentList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addRewardPunishmentCode()' value='입력'/>
-						<input type='button' class="btn btn-primary" onclick='' value='저장'/>
+						<input type='button' class="btn btn-info" onclick='certificatePurposeList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addCertificatePurpose()' value='입력'/>
+						<input type='button' class="btn btn-primary" id='' value='저장'/>
 					</form>
 					<br>
 					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>상벌코드</th>
-								<th>상벌코드명</th>
-								<th>변경사유</th>
-								<th>상벌구분</th>
-								<th>사용유무</th>
-								<th>시스템등록일자</th>
-								<th>최종수정일자</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="personnel" items="${rewardPunishmentCodeList}">
-								<tr>
-									<td>${personnel.rewardPunishmentCode}</td>
-									<td>${personnel.rewardPunishmentCodeName}</td>
-									<td>${personnel.rewardChangeReasonCause}</td>
-									<td>${personnel.rewardPunishmentDivision}</td>
-									<td>${personnel.rewardPunishmentUseExistenceNonexistence}</td>
-									<td>${personnel.rewardPunishmentRegistrationDate}</td>
-									<td>${personnel.rewardPunishmentModificationDate}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
+						<tr>
+							<th>증명서용도코드</th>
+							<td><input type="text" class="form-control" name="rewardPunishmentCode" id="rewardPunishmentCode" placeholder="상벌코드"></td>
+							
+							<th>증명서용도코드명</th>
+							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
+							
+							<th>변경사유</th>
+							<td><input type="text" class="form-control" name="rewardPunishmentCodeName" id="rewardPunishmentCodeName" placeholder="상벌코드명"></td>
+						
+							<th>인사/급여구분</th>
+							<td>
+								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
+									<option>인사</option>
+									<option>급여</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>사용여부</th>
+							<td>
+								<select class="form-control" name="rewardPunishmentUseExistenceNonexistence">
+									<option>Yes</option>
+									<option>No</option>
+								</select>
+							</td>
+							
+							<th>등록일자</th>
+							<td><input type="date" class="form-control" name="rewardPunishmentRegistrationDate" id="rewardPunishmentRegistrationDate" placeholder="등록일자"></td>
+							
+							<th>수정일자</th>
+							<td><input type="date" class="form-control" name="rewardPunishmentModificationDate" id="rewardPunishmentModificationDate" placeholder="수정일자"></td>
+						</tr>
 					</table>
 				</div>
 				<!-- /.container-fluid -->

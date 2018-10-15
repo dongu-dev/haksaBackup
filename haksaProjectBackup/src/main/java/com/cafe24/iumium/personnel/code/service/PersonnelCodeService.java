@@ -11,8 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment;
 import com.cafe24.iumium.personnel.code.dao.PersonnelCodeDao;
+import com.cafe24.iumium.personnel.code.dto.CertificateCode;
+import com.cafe24.iumium.personnel.code.dto.CertificatePurposeCode;
 import com.cafe24.iumium.personnel.code.dto.PersonnelCommonCode;
+import com.cafe24.iumium.personnel.code.dto.RewardPunishmentCode;
+import com.cafe24.iumium.personnel.code.dto.TrainingCode;
 
 @Service
 @Transactional
@@ -47,5 +52,37 @@ public class PersonnelCodeService {
 		reListPersonnelCommonCode.put("lastPage", lastPage);
 		
 		return reListPersonnelCommonCode;
+	}
+	
+	// 상벌코드 리스트 service 메소드
+	public Map<String, Object> getrewardPunishmentCode() {
+		Map<String, Object> rewardPunishmentCodeMap = new HashMap<String, Object> ();
+		List<RewardPunishmentCode> rewardPunishmentCodeList = personnelCodeDao.selectRewardPunishmentCode();
+		rewardPunishmentCodeMap.put("rewardPunishmentCodeList", rewardPunishmentCodeList);
+		return rewardPunishmentCodeMap;
+	}
+	
+	// 연수코드 리스트 service 메소드
+	public Map<String, Object> getTrainingCodeList() {
+		Map<String, Object> trainingMap = new HashMap<String, Object> ();
+		List<TrainingCode> getTrainingList = personnelCodeDao.selectTrainingCode();
+		trainingMap.put("getTrainingList", getTrainingList);
+		return trainingMap;
+	}
+	
+	// 증명서코드 리스트 service 메소드
+	public Map<String, Object> getCertificateCodeList() {
+		Map<String, Object> CertificateMap = new HashMap<String, Object> ();
+		List<CertificateCode> getCertificateList = personnelCodeDao.selectCertificateCode();
+		CertificateMap.put("getCertificateList", getCertificateList);
+		return CertificateMap;
+	}
+	
+	// 증명서용도코드 리스트 service 메소드
+	public Map<String, Object> getCertificatePurposeCodeList() {
+		Map<String, Object> CertificatePurposeMap = new HashMap<String, Object> ();
+		List<CertificatePurposeCode> getCertificatePurposeList = personnelCodeDao.selectCertificatePurposeCode();
+		CertificatePurposeMap.put("getCertificatePurposeList", getCertificatePurposeList);
+		return CertificatePurposeMap;
 	}
 }

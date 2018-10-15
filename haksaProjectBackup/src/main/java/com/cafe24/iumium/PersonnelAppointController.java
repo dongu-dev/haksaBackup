@@ -1,5 +1,6 @@
 package com.cafe24.iumium;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cafe24.iumium.personnel.appoint.dto.OtherAppointment;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasicChangeBreakdown;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPromotion;
 import com.cafe24.iumium.personnel.appoint.service.PersonnelAppointmentService;
 import com.cafe24.iumium.personnel.appoint.service.PersonnelPromotionService;
@@ -117,5 +121,34 @@ public class PersonnelAppointController {
 		logger.info("인사기본사항 페이지 호출");
 		return "personnelAppoint/addPersonnelBasicDetail";	
 	}
-		
+	
+	
+
+	// 이응빈
+	// 인사기본사항 리스트 페이지 호출
+	@RequestMapping(value="/personnelAppoint/personnelBasicList", method = RequestMethod.GET)
+	public String personnelBasicList(Model model) {
+		logger.info("인사기본사항 리스트 페이지 호출");
+		List<PersonnelBasic> personnelBasic = personnelAppointmentService.getPersonnelBasicList();
+		model.addAttribute("personnelBasic", personnelBasic);
+		return "personnelAppoint/personnelBasicList";	
+	}
+	
+	// 인사기본사항변동내역 리스트 페이지 호출
+	@RequestMapping(value="/personnelAppoint/personnelBasicChangeBreakdownList", method = RequestMethod.GET)
+	public String personnelBasicChangeBreakdownList(Model model) {
+		logger.info("인사기본사항변동내역 리스트 페이지 호출");
+		List<PersonnelBasicChangeBreakdown> personnelBasicChangeBreakdown = personnelAppointmentService.getPersonnelBasicChangeBreakdownList();
+		model.addAttribute("personnelBasicChangeBreakdown", personnelBasicChangeBreakdown);
+		return "personnelAppoint/personnelBasicChangeBreakdownList";	
+	}
+	
+	// 기타임용 리스트 페이지 호출
+	@RequestMapping(value="/personnelAppoint/otherAppointmentList", method = RequestMethod.GET)
+	public String otherAppointmentList(Model model) {
+		logger.info("기타임용 리스트 페이지 호출");
+		List<OtherAppointment> otherAppointment = personnelAppointmentService.getOtherAppointmentList();
+		model.addAttribute("otherAppointment", otherAppointment);
+		return "personnelAppoint/otherAppointmentList";	
+	}	
 }

@@ -27,14 +27,6 @@ public class PersonnelCodeController {
 		return "personnelCode/addPersonnelCommonCode";	
 	}
 	
-	
-	
-	@RequestMapping(value="/test", method = RequestMethod.GET)
-	public String test() {
-		logger.info("인사입력페이지 호출");
-		return "personnelCode/test";	
-	}
-	
 	// 인사공통코드 리스트 페이지 데이터 호출
 	@RequestMapping(value="/personnelCode/personnelCommonCodeList", method = RequestMethod.GET)
 	public String personnelCommonCodeList(Model model
@@ -59,5 +51,69 @@ public class PersonnelCodeController {
 	logger.info("keyWord값" +keyWord);
 		
 		return "personnelCode/personnelCommonCodeList";
+	}
+	
+	// 상벌코드 입력 페이지 호출
+	@RequestMapping(value="/personnelCode/addRewardPunishment", method = RequestMethod.GET)
+	public String addRewardPunishment() {
+		logger.info("상벌 입력 페이지 호출");
+		return "personnelCode/addRewardPunishment";	
+	}
+	
+	// 상벌코드 리스트 페이지 호출
+	@RequestMapping(value="/personnelCode/rewardPunishmentList", method = RequestMethod.GET)
+	public String rewardPunishmentList(Model model) {
+		logger.info("상벌리스트 페이지 호출");
+		Map<String, Object> rewardPunishmentCodeMap = PersonnelCodeService.getrewardPunishmentCode();
+		model.addAttribute("rewardPunishmentCodeList", rewardPunishmentCodeMap.get("rewardPunishmentCodeList"));
+		return "personnelCode/rewardPunishmentList";	
+	}
+	
+	// 연수코드 입력 페이지 호출
+	@RequestMapping(value="/personnelCode/addTraining", method = RequestMethod.GET)
+	public String addTraining() {
+		logger.info("연수 입력 페이지 호출");
+		return "personnelCode/addTraining";	
+	}
+	
+	// 연수코드 리스트 페이지 호출
+	@RequestMapping(value="/personnelCode/trainingList", method = RequestMethod.GET)
+	public String trainingList(Model model) {
+		logger.info("연수코드 리스트 페이지 호출");
+		Map<String, Object> trainingMap = PersonnelCodeService.getTrainingCodeList();
+		model.addAttribute("getTrainingList", trainingMap.get("getTrainingList"));
+		return "personnelCode/trainingList";	
+	}
+	
+	// 증명서코드 입력 페이지 호출
+	@RequestMapping(value="/personnelCode/addCertificate", method = RequestMethod.GET)
+	public String addCertificate() {
+		logger.info("증명서코드 입력 페이지 호출");
+		return "personnelCode/addCertificate";	
+	}
+	
+	// 증명서코드 리스트 페이지 호출
+	@RequestMapping(value="/personnelCode/certificateList", method = RequestMethod.GET)
+	public String certificateList(Model model) {
+		logger.info("증명서코드 리스트 페이지 호출");
+		Map<String, Object> certificateMap = PersonnelCodeService.getCertificateCodeList();
+		model.addAttribute("getCertificateList", certificateMap.get("getCertificateList"));
+		return "personnelCode/certificateList";	
+	}
+	
+	// 증명서용도코드 입력 페이지 호출
+	@RequestMapping(value="/personnelCode/addCertificatePurpose", method = RequestMethod.GET)
+	public String addPCertificatePurpose() {
+		logger.info("증명서용도코드 입력 페이지 호출");
+		return "personnelCode/addCertificatePurpose";	
+	}
+	
+	// 증명서용도코드 리스트 페이지 호출
+	@RequestMapping(value="/personnelCode/certificatePurposeList", method = RequestMethod.GET)
+	public String certificatePurposeList(Model model) {
+		logger.info("증명서용도코드 리스트 페이지 호출");
+		Map<String, Object> certificatePurposeMap = PersonnelCodeService.getCertificatePurposeCodeList();
+		model.addAttribute("getCertificatePurposeList", certificatePurposeMap.get("getCertificatePurposeList"));
+		return "personnelCode/certificatePurposeList";	
 	}
 }

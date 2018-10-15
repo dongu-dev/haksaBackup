@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.iumium.personnel.appoint.dao.PersonnelAppointmentDao;
+import com.cafe24.iumium.personnel.appoint.dto.OtherAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasicChangeBreakdown;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPromotion;
 
@@ -34,5 +37,21 @@ public class PersonnelAppointmentDao {
 	//비정규직 임용리스트 dao
 	public List<PersonnelPermanentAppointment> personneltemporaryAppointmentList() {
 		return sqlSessionTemplate.selectList(NS+"personneltemporaryAppointmentList");
+	}
+	
+	// 이응빈
+	// 인사기본사항 리스트 dao
+	public List<PersonnelBasic> getPersonnelBasicList() {
+		return sqlSessionTemplate.selectList(NS+"personnelBasicList");
+	}
+	
+	// 인사기본사항변동내역 리스트 dao
+	public List<PersonnelBasicChangeBreakdown> getPersonnelBasicChangeBreakdownList() {
+		return sqlSessionTemplate.selectList(NS+"personnelBasicChangeBreakdownList");
+	}
+	
+	// 기타임용 리스트 dao
+	public List<OtherAppointment> getOtherAppointmentList() {
+		return sqlSessionTemplate.selectList(NS+"otherAppointmentList");
 	}
 }

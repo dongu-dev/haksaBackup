@@ -1,16 +1,16 @@
 package com.cafe24.iumium.personnel.appoint.dto;
 
 public class PersonnelPromotion {
-	public String promotionNumber;
-	public String appointmentSchoolPersonnelNumber;
-	public String rankCode;
-	public int promotionAppointmentAnnualIncome;
-	public int promotionAppointmentSalaryclass;
-	public String promotionDay;
-	public String promotionAppointmentDay;
-	public String promotionAppointReason;
-	public String promotionRegistrationDate;
-	public String promotionModificationDate;
+	private String promotionNumber;
+	private String appointmentSchoolPersonnelNumber;
+	private String rankCode;
+	private int promotionAppointmentAnnualIncome;
+	private int promotionAppointmentSalaryclass;
+	private String promotionDay;
+	private String promotionAppointmentDay;
+	private String promotionAppointReason;
+	private String promotionRegistrationDate;
+	private String promotionModificationDate;
 	
 	public String getPromotionNumber() {
 		return promotionNumber;

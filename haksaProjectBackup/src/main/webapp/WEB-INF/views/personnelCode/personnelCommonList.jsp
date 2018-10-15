@@ -19,9 +19,26 @@
 		
 		<!-- Page level plugin CSS-->
 		<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-		
+	
 		<!-- Custom styles for this template-->
 		<link href="/resources/css/sb-admin.css" rel="stylesheet">
+		
+		<style>
+			#enrolScoreMain{
+				text-align : left;
+				font-weight: bold;
+				font-size: 30px;
+			}
+			
+			#form {
+				text-align : right;
+			}
+			
+			#c:if {
+				text-align : right;
+			}
+		</style>
+		
 		<script>
 			function addPersonnelCommonCode(){
 			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommonCode";
@@ -48,19 +65,21 @@
 				<!-- 여기에 내용이 담긴다 -->
 				<h1>인사관리 > 인사공통코드</h1>
 				<br>
-				<form action="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList" method="get">
-					<input type="submit" value="검색">
+				<p id="enrolScoreMain">* 인사공통코드 리스트</p>
+				<form action="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList" method="get" id="form">
+					<input type="submit" class="btn btn-default" value="검색">
 					<input type="text" name="keyWord">
 					<select name="optionSearch">
 						<option value=" "></option>
 						<option value="신규">신규</option>
 						<option value="공채">공채</option>
 					</select>
-					<input type='button' name='a' onclick='personnelCommonCodeList()' value='조회'/>
-					<input type='button' onclick='addPersonnelCommonCode()' value='입력'/>
+					<input type='button' class="btn btn-info" name='a' onclick='personnelCommonCodeList()' value='조회'/>
+					<input type='button' class="btn btn-success" onclick='addPersonnelCommonCode()' value='입력'/>
+					<input type='button' class="btn btn-primary" onclick='' value='저장'/>
 				</form>
 				<br><br>
-                <table border="1">
+                <table class="table table-bordered">
                   <thead>
 						<tr>
 							<th>발령코드</th>
@@ -120,20 +139,22 @@
 					</tbody>
 				</table>
 				</div>
-				<c:if test="${param.a eq 'click'}">
-					<c:if test="${currentPage > 1}" >
-						<a href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?currentPage=${currentPage - 1}&&a=click"">이전</a>
+				<form id="form">
+					<c:if test="${param.a eq 'click'}">
+						<c:if test="${currentPage > 1}" >
+							<a href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?currentPage=${currentPage - 1}&&a=click"">이전</a>
+						</c:if>
+						
+						<!-- 번호 페이징 부여 -->
+						<c:forEach var="i" begin="1" end="${lastPage}" step="1">
+							<a href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?currentPage=${i}&&a=click"><c:out value="${i}" /></a>
+						</c:forEach>
+						
+						<c:if test="${currentPage < lastPage }">
+							<a href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?currentPage=${currentPage + 1}&&a=click"">다음</a>
+						</c:if>
 					</c:if>
-					
-					<!-- 번호 페이징 부여 -->
-					<c:forEach var="i" begin="1" end="${lastPage}" step="1">
-						<a href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?currentPage=${i}&&a=click"><c:out value="${i}" /></a>
-					</c:forEach>
-					
-					<c:if test="${currentPage < lastPage }">
-						<a href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?currentPage=${currentPage + 1}&&a=click"">다음</a>
-					</c:if>
-				</c:if>
+				</form>
 				<!-- /.container-fluid -->
 	
 				<!-- Sticky Footer -->

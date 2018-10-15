@@ -75,7 +75,7 @@
 				    	, dataType:'JSON'
 				    	, data: jsonData
 				    	, contentType: 'application/json; charset=UTF-8'
-				    	, success: function(data) {
+				    	, success: function() {
 				    		location.href='${pageContext.request.contextPath}/personnelAppoint/addPromotion';
 				    	}, error: function(request,status,error){
 				            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

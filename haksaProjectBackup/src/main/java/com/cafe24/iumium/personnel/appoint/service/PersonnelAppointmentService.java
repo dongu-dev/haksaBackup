@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cafe24.iumium.personnel.appoint.dao.PersonnelAppointmentDao;
+import com.cafe24.iumium.personnel.appoint.dto.OtherAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasicChangeBreakdown;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
 import com.cafe24.iumium.personnel.code.service.PersonnelCodeService;
 
@@ -50,5 +53,21 @@ public class PersonnelAppointmentService {
 		permanentTemporaryMap.put("personnelTemporaryAppointment", personnelTemporaryAppointment);
 		
 		return permanentTemporaryMap;
+	}
+	
+	// 이응빈
+	// 인사기본사항 리스트 Service
+	public List<PersonnelBasic> getPersonnelBasicList() {
+		return personnelAppointmentDao.getPersonnelBasicList();
+	}
+	
+	// 인사기본사항변동내역 리스트 Service
+	public List<PersonnelBasicChangeBreakdown> getPersonnelBasicChangeBreakdownList() {
+		return personnelAppointmentDao.getPersonnelBasicChangeBreakdownList();
+	}
+	
+	// 기타임용 리스트 Service
+	public List<OtherAppointment> getOtherAppointmentList() {
+		return personnelAppointmentDao.getOtherAppointmentList();
 	}
 }

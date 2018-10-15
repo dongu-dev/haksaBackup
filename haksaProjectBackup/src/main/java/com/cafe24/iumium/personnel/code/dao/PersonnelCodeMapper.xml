@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.cafe24.iumium.personnel.code.dao.PersonnelCodeMapper">
+	<!-- 인사공통코드 리스트 조회 -->
 	<select id="personnelCommonCodeList"
 			parameterType="java.util.Map"
 			resultType="com.cafe24.iumium.personnel.code.dto.PersonnelCommonCode">
@@ -18,7 +19,7 @@
 			   <choose>
 			   		<when test="!optionSearch.equals('')">
 			   			WHERE personnel_common_appointment_code LIKE #{keyWord} AND personnel_common_appointment_code_name LIKE #{optionSearch}
-			  	</when>
+				  	</when>
 			   </choose>
 			</if>
 			<if test="keyWord.equals('')">
@@ -32,9 +33,70 @@
 		ASC LIMIT #{startPage}, #{pagePerRow}
 	</select>
 	
+	<!-- 인사공통코드 총 행의 개수 -->
 	<select id="totalCount"
 			resultType="int">
 		SELECT count(*)
 		FROM ilban_personnel_common
+	</select>
+	
+	<!-- 상벌코드 조회 -->
+	<select id="selectRewardPunishmentCode"
+			resultType="com.cafe24.iumium.personnel.code.dto.RewardPunishmentCode">
+		SELECT 
+			reward_punishment_code AS rewardPunishmentCode
+			, reward_punishment_code_name AS rewardPunishmentCodeName
+			, ilban_change_reason.change_reason_cause AS rewardChangeReasonCause
+			, reward_punishment_division AS rewardPunishmentDivision
+			, reward_punishment_use_existence_nonexistence AS rewardPunishmentUseExistenceNonexistence
+			, reward_punishment_registration_date AS rewardPunishmentRegistrationDate
+			, reward_punishment_modification_date AS rewardPunishmentModificationDate
+		FROM ilban_reward_punishment INNER JOIN ilban_change_reason 
+		ON ilban_reward_punishment.reward_punishment_code = ilban_change_reason.change_reason_all_admin_code
+	</select>
+	
+	<!-- 연수코드 조회 -->
+	<select id="selectTrainingCode"
+			resultType="com.cafe24.iumium.personnel.code.dto.TrainingCode">
+		SELECT 
+			training_code AS trainingCode
+			, training_code_name AS trainingCodeName
+			, training_home_and_abroad_division AS trainingHomeAndAbroadDivision
+			, ilban_change_reason.change_reason_cause AS trainingChangeReasonCause
+			, training_use_existence_nonexistence AS trainingUseExistenceNonexistence
+			, training_registration_date AS trainingRegistrationDate
+			, training_modification_date AS trainingModificationDate
+		FROM ilban_training INNER JOIN ilban_change_reason
+		ON ilban_training.training_code = ilban_change_reason.change_reason_all_admin_code
+	</select>
+	
+	<!-- 증명서코드 조회 -->
+	<select id="selectCertificateCode"
+			resultType="com.cafe24.iumium.personnel.code.dto.CertificateCode">
+		SELECT 
+			certificate_code AS certificateCode
+			, certificate_code_name AS certificateCodeName
+			, ilban_change_reason.change_reason_cause AS certificateChangeReasonCause
+			, certificate_personnel_pay_division AS certificatePersonnelPayDivision
+			, certificate_use_existence_nonexistence AS certificateUseExistenceNonexistence
+			, certificate_registration_date AS certificateRegistrationDate
+			, certificate_modification_date AS certificateModificationDate
+		FROM ilban_certificate INNER JOIN ilban_change_reason 
+		ON ilban_certificate.certificate_code = ilban_change_reason.change_reason_all_admin_code
+	</select>
+	
+	<!-- 증명서용도코드 조회 -->
+	<select id="selectCertificatePurposeCode"
+			resultType="com.cafe24.iumium.personnel.code.dto.CertificatePurposeCode">
+		SELECT 
+			certificate_purpose_code AS certificatePurposeCode
+			, certificate_purpose_code_name AS certificatePurposeCodeName
+			, ilban_change_reason.change_reason_cause AS certificatePurposeChangeReasonCause
+			, certificate_purpose_personnel_pay_division AS certificatePurposePersonnelPayDivision
+			, certificate_purpose_use_existence_nonexistence AS certificatePurposeUseExistenceNonexistence
+			, certificate_purpose_registration_date AS certificatePurposeRegistrationDate
+			, certificate_purpose_modification_date AS certificatePurposeModificationDate
+		FROM ilban_certificate_purpose INNER JOIN ilban_change_reason 
+		ON ilban_certificate_purpose.certificate_purpose_code = ilban_change_reason.change_reason_all_admin_code
 	</select>
 </mapper>

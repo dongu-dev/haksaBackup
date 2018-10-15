@@ -61,4 +61,60 @@
 		, appointment_temporary_modification_date AS appointmentTemporaryModificationDate
 	FROM ilban_appointment_temporary
 	</select>
+	
+	<!-- 인사기본사항 리스트 조회 쿼리 -->
+	<select id="personnelBasicList" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic">
+		SELECT
+				appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, personnel_basic_hire_division as personnelBasicHireDivision
+				, personnel_basic_annual_income_division as personnelBasicAnnualIncomeDivision
+				, personnel_basic_organization as personnelBasicOrganization
+				, personnel_basic_years_month_day as personnelBasicYearsMonthDay
+				, personnel_basic_reassign_check as personnelBasicReassignCheck
+				, personnel_basic_other_official as personnel_basicOtherOfficial
+				, personnel_basic_office_telephone_number as personnelBasicOfficeTelephoneNumber
+				, personnel_basic_retirement_guarantee as personnelBasicRetirementGuarantee
+				, personnel_basic_postposition as personnelBasicPostposition
+				, personnel_basic_lunar_solar_division as personnelBasicLunarSolarDivision
+				, personnel_basic_center_enter_day as personnelBasicCenterEnterDay
+				, personnel_basic_registration_date as personnelBasicRegistrationDate
+		FROM ilban_personnel_basic
+	</select>
+	
+	<!-- 인사기본사항변동내역 리스트 조회 쿼리 -->
+	<select id="personnelBasicChangeBreakdownList" resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelBasicChangeBreakdown">
+		SELECT
+				personnel_basic_change_breakdown_number as personnelBasicChangeBreakdownNumber
+				, appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, personnel_basic_change_breakdown_hire_division as personnelBasicChangeBreakdownHireDivision
+				, personnel_basic_change_breakdown_annual_income_division as personnelBasicChangeBreakdownAnnualIncomeDivision
+				, personnel_basic_change_breakdown_organization as personnelBasicChangeBreakdownOrganization
+				, personnel_basic_change_breakdown_years_month_day as personnelBasicChangeBreakdownYearsMonthDay
+				, personnel_basic_change_breakdown_reassign_check as personnelBasicChangeBreakdownReassignCheck
+				, personnel_basic_change_breakdown_other_official as personnelBasicChangeBreakdownOtherOfficial
+				, personnel_basic_change_breakdown_office_telephone_number as personnelBasicChangeBreakdownOfficeTelephoneNumber
+				, personnel_basic_change_breakdown_retirement_guarantee as personnelBasicChangeBreakdownRetirementGuarantee
+				, personnel_basic_change_breakdown_postposition as personnelBasicChangeBreakdownPostposition
+				, personnel_basic_change_breakdown_lunar_solar_division as personnelBasicChangeBreakdownLunarSolarDivision
+				, personnel_basic_change_breakdown_center_enter_day as personnelBasicChangeBreakdownCenterEnterDay
+				, personnel_basic_change_breakdown_registration_date as personnelBasicChangeBreakdownRegistrationDate
+		FROM ilban_personnel_basic_change_breakdown
+	</select>
+	
+	<!-- 기타임용 리스트 조회 쿼리 -->
+	<select id="otherAppointmentList" resultType="com.cafe24.iumium.personnel.appoint.dto.OtherAppointment">
+		SELECT
+				appointment_school_personnel_number as appointmentSchoolPersonnelNumber
+				, position_code as positionCode
+				, other_appointment_annual_income as otherAppointmentAnnualIncome
+				, other_appointment_career_division as otherAppointmentCareerDivision
+				, other_appointment_contract_start_term as otherAppointmentContractStartTerm
+				, other_appointment_contract_end_term as otherAppointmentContractEndTerm
+				, other_appointment_position_team as otherAppointmentPositionTeam
+				, other_appointment_salaryclass as otherAppointmentSalaryclass
+				, other_appointment_salaryclass_promotion as otherAppointmentSalaryclassPromotion
+				, other_appointment_registration_date as otherAppointmentRegistrationDate
+				, other_appointment_modification_date as otherAppointmentModificationDate
+		FROM ilban_other_appointment
+	</select>
 </mapper>
