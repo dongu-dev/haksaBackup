@@ -65,7 +65,7 @@
 				<i class="fas fa-fw fa-folder"></i> <span>인사코드 관리</span>
 			</a>
 			<div class="dropdown-menu" aria-labelledby="pagesDropdown">
-				<a class="dropdown-item" href="/personnelCode/personnelCommonCodeList">인사공통 코드</a> 
+				<a class="dropdown-item" href="/personnelCode/personnelCommonList">인사공통 코드</a> 
 				<a class="dropdown-item" href="/personnelCode/rewardPunishmentList">상벌 코드</a>
 				<a class="dropdown-item" href="/personnelCode/trainingList">연수 코드</a>
 				<a class="dropdown-item" href="/personnelCode/certificateList">증명서 코드</a>

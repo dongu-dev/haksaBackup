@@ -1,138 +1,172 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="true" pageEncoding="UTF-8"%>
+<!-- 상벌코드 리스트 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>jQuery Table Sort</title>
-
-
-
-<link rel="stylesheet"
-	href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-<script>
-	$(function() {
-		// 소트를 설정
-		var sortOrder = 1; // 1:ASC -1:DESC
-		// 열을 클릭하면
-		$(".dothesort").click(function() {
-			var type = $(this).data('type'); // string, integer
-			var col = $(this).index(); // 0, 1, ...
-			// 행 전체를 취득
-			var $rows = $('tbody>tr');
-			// 행을 소트
-			//https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
-			//array.sort(compareFunction);
-			$rows.sort(function(a, b) {
-				return compare(a, b, type, col) * sortOrder;
-			});
-			// tbody를 소트된 행 전체로 바꾸기
-			$('tbody').empty().append($rows);
-			var arrow = sortOrder === 1 ? "▲" : "▼";
-			$('.dothesort > span').text('');
-			$(this).find('span').text(arrow);
-			// 소트 순서를 반전
-			sortOrder *= -1;
-		});
-
-		function compare(a, b, type, col) {
-			var _a = $(a).find('td').eq(col).text(); // eq(index)
-			var _b = $(b).find('td').eq(col).text();
-			if (type == "string") {
-				if (_a < _b)
-					return -1;
-				if (_a > _b)
-					return 1;
-				return 0;
-			} else {
-				_a *= 1;
-				_b *= 1; // a, b를 숫자로 만든다.
-				return _a - _b;
+<html lang="ko">
+	<head>
+	
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<title>상벌코드 리스트</title>
+		
+		<!-- Bootstrap core CSS-->
+		<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Custom fonts for this template-->
+		<link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+		
+		<!-- Page level plugin CSS-->
+		<link href="/resources/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+		
+		<!-- Custom styles for this template-->
+		<link href="/resources/css/sb-admin.css" rel="stylesheet">
+		
+		<style>
+			#enrolScoreMain{
+				text-align : left;
+				font-weight: bold;
+				font-size: 30px;
 			}
-		}
-	});
-
-	$(document).ready(function() {
-		/*-----------------------------------------------------------------
-		 * 키값 rowTag로 테이블의 기본 row 값의 Html태그 저장
-		-----------------------------------------------------------------*/
-		var rowTag = $("table tbody").html();
-		$(".tbtd_caption").data("rowTag", rowTag); //키값 rowTag로 테이블의 기본 row 값의 Html태그 저장
-	});
-
-	/* ********************************************************
-	 * 행추가 기능
-	 ******************************************************** */
-	function rowAdd() {
-		$("table tbody").append($(".tbtd_caption").data("rowTag")); //rowTag의 키값으로 저장된 Html값 호출하여 테이블에 추가
-	}
-	/* ********************************************************
-	 * 현재행 삭제 기능
-	 ******************************************************** */
-	function rowDelete(obj) {
-		$(obj).parent().parent().remove();
-	}
-
-	/* ********************************************************
-	 * 체크박스 선택행 삭제 기능
-	 ******************************************************** */
-	function rowCheDel() {
-		var $obj = $("input[name='chk']");
-		var checkCount = $obj.size();
-		for (var i = 0; i < checkCount; i++) {
-			if ($obj.eq(i).is(":checked")) {
-				$obj.eq(i).parent().parent().remove();
+			
+			#form {
+				text-align : right;
 			}
-		}
-	}
-
-	/* ********************************************************
-	 * 체크박스 전체선택/해제 기능
-	 ******************************************************** */
-	function selectAll() {
-		if ($("#chk_list").is(":checked")) {
-
-			//  $("input[name=chk]").attr("checked",true);
-			$("input[name=chk]").prop("checked", true);
-		} else {
-			$("input[name=chk]").prop("checked", false);
-		}
-	}
-</script>
-
-</head>
-<body>
-
-	<table border="1px" width="500px" class="tbtd_caption">
-		<caption>체크박스 전체선택/해제/행추가/행삭제/선택행삭제</caption>
-		<colgroup>
-			<col width="40px;" />
-			<col width="200px;" />
-			<col width="100px;" />
-		</colgroup>
-
-		<thead>
-			<tr>
-				<th><INPUT TYPE="checkbox" ID="chk_list" name="chk_list"
-					value="" onClick="selectAll()"></th>
-				<th class="dothesort" data-type="string">내용<span></span></th>
-				<th class="dothesort" data-type="integer">기타<span></span></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><INPUT TYPE="checkbox" ID="chk" name="chk"></td>
-				<td><input type="text" name="txtbox" /></td>
-				<td><input type="button" value="현재행 삭제"
-					onClick="rowDelete(this)" /></td>
-			</tr>
-		</tbody>
-	</table>
-
-	<input type="button" value="행추가" onClick="rowAdd();" />
-	<input type="button" value="선택행 삭제" onClick="rowCheDel();" />
-</body>
+			
+			#img {
+				text-align: center;
+				opacity: 0.4;
+   				filter: alpha(opacity=40);
+			}
+		</style>
+		
+		<script>  
+			// 입력 버튼 눌렀을 시 페이지 이동	
+			function addRewardPunishmentCode(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/addRewardPunishment";
+			}
+			
+			// 조회 버튼 눌렀을 시 페이지 이동
+			function rewardPunishmentList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/rewardPunishmentList";
+			}
+		</script>
+	</head>
+	
+	<body id="page-top">
+	
+		<jsp:include page="/WEB-INF/views/module/nav.jsp"/>
+	
+		<div id="wrapper">
+	
+			<jsp:include page="/WEB-INF/views/module/sidebar.jsp"/>
+	
+			<div id="content-wrapper">
+	
+				<div class="container-fluid">
+				<!-- 여기에 내용이 담긴다 -->
+				<h1>인사관리 > 상벌코드 관리</h1>
+				<br>
+					<p id="enrolScoreMain">* 상벌코드 관리 리스트</p>
+					<form id="form">
+						<input type='button' class="btn btn-info" onclick='rewardPunishmentList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addRewardPunishmentCode()' value='입력'/>
+						<input type='button' class="btn btn-primary" onclick='' value='저장'/>
+					</form>
+					<br>
+					<table class="table table-sm">
+						<thead>
+							<tr>
+								<th>상벌코드</th>
+								<th>상벌코드명</th>
+								<th>변경사유</th>
+								<th>상벌구분</th>
+								<th>사용유무</th>
+								<th>시스템등록일자</th>
+								<th>최종수정일자</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="personnel" items="${rewardPunishmentCodeList}">
+								<tr>
+									<td>${personnel.rewardPunishmentCode}</td>
+									<td>${personnel.rewardPunishmentCodeName}</td>
+									<td>${personnel.rewardChangeReasonCause}</td>
+									<td>${personnel.rewardPunishmentDivision}</td>
+									<td>${personnel.rewardPunishmentUseExistenceNonexistence}</td>
+									<td>${personnel.rewardPunishmentRegistrationDate}</td>
+									<td>${personnel.rewardPunishmentModificationDate}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<p id="img"><img src="/resources/img/img1.png"></p>
+				<!-- /.container-fluid -->
+	
+				<!-- Sticky Footer -->
+				<footer class="sticky-footer">
+					<div class="container my-auto">
+						<div class="copyright text-center my-auto">
+							<span>Copyright © Haksa 2018</span>
+						</div>
+					</div>
+				</footer>
+	
+			</div>
+			<!-- /.content-wrapper -->
+	
+		</div>
+		<!-- /#wrapper -->
+	
+		<!-- Scroll to Top Button-->
+		<a class="scroll-to-top rounded" href="#page-top"> <i
+			class="fas fa-angle-up"></i>
+		</a>
+	
+		<!-- Logout Modal-->
+		<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+						<button class="close" type="button" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">Ã</span>
+						</button>
+					</div>
+					<div class="modal-body">Select "Logout" below if you are ready
+						to end your current session.</div>
+					<div class="modal-footer">
+						<button class="btn btn-secondary" type="button"
+							data-dismiss="modal">Cancel</button>
+						<a class="btn btn-primary" href="login.html">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<!-- Bootstrap core JavaScript-->
+		<script src="/resources/vendor/jquery/jquery.min.js"></script>
+		<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	
+		<!-- Core plugin JavaScript-->
+		<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+		<!-- Page level plugin JavaScript-->
+		<script src="/resources/vendor/chart.js/Chart.min.js"></script>
+		<script src="/resources/vendor/datatables/jquery.dataTables.js"></script>
+		<script src="/resources/vendor/datatables/dataTables.bootstrap4.js"></script>
+	
+		<!-- Custom scripts for all pages-->
+		<script src="/resources/js/sb-admin.min.js"></script>
+	
+		<!-- Demo scripts for this page-->
+		<script src="/resources/js/demo/datatables-demo.js"></script>
+		<script src="/resources/js/demo/chart-area-demo.js"></script>
+	
+	</body>
 </html>

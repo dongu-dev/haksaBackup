@@ -47,7 +47,7 @@
 	</select> 
 	
 	<!-- 비정규직 리스트 조회 쿼리 -->
-	<select id="personneltemporaryAppointmentList"
+	<select id="personnelTemporaryAppointmentList"
 			resultType="com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment">
 	SELECT 
 		appointment_school_personnel_number AS appointmentSchoolPersonnelNumber

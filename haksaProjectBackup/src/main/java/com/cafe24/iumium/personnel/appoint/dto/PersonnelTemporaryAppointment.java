@@ -10,7 +10,8 @@ public class PersonnelTemporaryAppointment {
 	private String appointmentTemporaryAppointReason;
 	private String appointmentTemporaryRegistrationDate;
 	private String appointmentTemporaryModificationDate;
-	private String getAppointmentSchoolPersonnelNumber() {
+	
+	public String getAppointmentSchoolPersonnelNumber() {
 		return appointmentSchoolPersonnelNumber;
 	}
 	public void setAppointmentSchoolPersonnelNumber(String appointmentSchoolPersonnelNumber) {

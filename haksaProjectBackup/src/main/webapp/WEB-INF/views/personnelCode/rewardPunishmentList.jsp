@@ -34,6 +34,12 @@
 			#form {
 				text-align : right;
 			}
+			
+			p {
+				text-align: center;
+				opacity: 0.4;
+   				filter: alpha(opacity=40);
+			}
 		</style>
 		
 		<script>  
@@ -70,7 +76,7 @@
 						<input type='button' class="btn btn-primary" onclick='' value='저장'/>
 					</form>
 					<br>
-					<table class="table table-bordered">
+					<table class="table table-sm">
 						<thead>
 							<tr>
 								<th>상벌코드</th>
@@ -97,6 +103,7 @@
 						</tbody>
 					</table>
 				</div>
+				<p><img src="/resources/img/img1.png"></p>
 				<!-- /.container-fluid -->
 	
 				<!-- Sticky Footer -->

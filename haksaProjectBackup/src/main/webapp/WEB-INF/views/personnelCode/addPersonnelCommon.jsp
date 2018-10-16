@@ -36,12 +36,12 @@
 		</style>
 		
 		<script>
-			function addPersonnelCommonCode(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommonCode";
+			function addPersonnelCommon(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/addPersonnelCommon";
 			}
 			
-			function personnelCommonCodeList(){
-			    window.location.href="${pageContext.request.contextPath}/personnelCode/personnelCommonCodeList?a=" + 'click';
+			function personnelCommonList(){
+			    window.location.href="${pageContext.request.contextPath}/personnelCode/personnelCommonList?a=" + 'click';
 			}
 		</script>
 	</head>
@@ -62,8 +62,8 @@
 					<br>
 					<p id="enrolScoreMain">* 인사공통코드 입력</p>
 					<form id="form">
-						<input type='button' class="btn btn-info" onclick='personnelCommonCodeList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addPersonnelCommonCode()' value='입력'/>
+						<input type='button' class="btn btn-info" onclick='personnelCommonList()' value='조회'/>
+						<input type='button' class="btn btn-success" onclick='addPersonnelCommon()' value='입력'/>
 						<input type='button' class="btn btn-primary" id='' value='저장'/>
 					</form>
 					<br>

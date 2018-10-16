@@ -21,14 +21,21 @@ public class PersonnelCodeController {
 	private static final Logger logger = LoggerFactory.getLogger(PersonnelCodeController.class);
 	
 	// 인사입력 페이지 호출
-	@RequestMapping(value="/personnelCode/addPersonnelCommonCode", method = RequestMethod.GET)
+	@RequestMapping(value="/personnelCode/addPersonnelCommon", method = RequestMethod.GET)
 	public String insertPersonnelCommonCode() {
 		logger.info("인사입력페이지 호출");
-		return "personnelCode/addPersonnelCommonCode";	
+		return "personnelCode/addPersonnelCommon";	
 	}
 	
+	@RequestMapping(value="/a", method = RequestMethod.GET)
+	public String a() {
+		logger.info("인사입력페이지 호출");
+		return "personnelCode/test";	
+	}
+	
+	
 	// 인사공통코드 리스트 페이지 데이터 호출
-	@RequestMapping(value="/personnelCode/personnelCommonCodeList", method = RequestMethod.GET)
+	@RequestMapping(value="/personnelCode/personnelCommonList", method = RequestMethod.GET)
 	public String personnelCommonCodeList(Model model
 				, @RequestParam(value="currentPage", defaultValue="1") int currentPage
 				, @RequestParam(value="pagePerRow", required=true, defaultValue="10") int pagePerRow
@@ -50,7 +57,7 @@ public class PersonnelCodeController {
 	logger.info("optionSearchr값" + optionSearch);
 	logger.info("keyWord값" +keyWord);
 		
-		return "personnelCode/personnelCommonCodeList";
+		return "personnelCode/personnelCommonList";
 	}
 	
 	// 상벌코드 입력 페이지 호출

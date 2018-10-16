@@ -16,6 +16,7 @@ import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasicChangeBreakdown;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment;
 import com.cafe24.iumium.personnel.code.service.PersonnelCodeService;
 
 @Service
@@ -49,7 +50,7 @@ public class PersonnelAppointmentService {
 	public Map<String, Object> personneltemporaryAppointmentList() {
 		
 		Map<String, Object> permanentTemporaryMap = new HashMap<String, Object> ();
-		List<PersonnelPermanentAppointment> personnelTemporaryAppointment = personnelAppointmentDao.personneltemporaryAppointmentList();
+		List<PersonnelTemporaryAppointment> personnelTemporaryAppointment = personnelAppointmentDao.personneltemporaryAppointmentList();
 		permanentTemporaryMap.put("personnelTemporaryAppointment", personnelTemporaryAppointment);
 		
 		return permanentTemporaryMap;

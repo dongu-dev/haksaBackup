@@ -14,7 +14,7 @@ import com.cafe24.iumium.personnel.appoint.dto.PersonnelAppointment;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasic;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelBasicChangeBreakdown;
 import com.cafe24.iumium.personnel.appoint.dto.PersonnelPermanentAppointment;
-import com.cafe24.iumium.personnel.appoint.dto.PersonnelPromotion;
+import com.cafe24.iumium.personnel.appoint.dto.PersonnelTemporaryAppointment;
 
 @Repository
 public class PersonnelAppointmentDao {
@@ -35,8 +35,8 @@ public class PersonnelAppointmentDao {
 	}
 	
 	//비정규직 임용리스트 dao
-	public List<PersonnelPermanentAppointment> personneltemporaryAppointmentList() {
-		return sqlSessionTemplate.selectList(NS+"personneltemporaryAppointmentList");
+	public List<PersonnelTemporaryAppointment> personneltemporaryAppointmentList() {
+		return sqlSessionTemplate.selectList(NS+"personnelTemporaryAppointmentList");
 	}
 	
 	// 이응빈

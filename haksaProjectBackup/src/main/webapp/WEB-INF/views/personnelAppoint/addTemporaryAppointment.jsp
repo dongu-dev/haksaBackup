@@ -70,6 +70,7 @@
 					<input type='button' class="btn btn-primary" id='savePersonnelAppointment' value='저장'/>
 				</form>
 				<br>
+				
 				<table id="table" class="table table-bordered">
 					<tr>
 						<th>교직원번호</th>
@@ -107,6 +108,7 @@
 						<td colspan="6"><textarea class="form-control" name="promotionAppointReason" id="promotionAppointReason" ></textarea></td>
 					</tr>
 				</table>
+				
 			</div>
 			<!-- /.content-wrapper -->
 		</div>
