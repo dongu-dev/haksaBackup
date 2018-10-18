@@ -33,6 +33,12 @@ public class PersonnelCodeController {
 		return "personnelCode/test";	
 	}
 	
+	@RequestMapping(value="/b", method = RequestMethod.GET)
+	public String b() {
+		logger.info("test1페이지 호출");
+		return "personnelCode/test1";	
+	}
+	
 	
 	// 인사공통코드 리스트 페이지 데이터 호출
 	@RequestMapping(value="/personnelCode/personnelCommonList", method = RequestMethod.GET)
