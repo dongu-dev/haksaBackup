@@ -31,6 +31,447 @@
 
 
 <style>
+.mail-box {
+	border-collapse: collapse;
+	border-spacing: 0;
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+
+.mail-box aside {
+	display: table-cell;
+	float: none;
+	height: 100%;
+	padding: 0;
+	vertical-align: top;
+}
+
+.mail-box .sm-side {
+	background: none repeat scroll 0 0 #e5e8ef;
+	border-radius: 4px 0 0 4px;
+	width: 25%;
+}
+
+.mail-box .lg-side {
+	background: none repeat scroll 0 0 #fff;
+	border-radius: 0 4px 4px 0;
+	width: 75%;
+}
+
+.mail-box .sm-side .user-head {
+	background: none repeat scroll 0 0 #00a8b3;
+	border-radius: 4px 0 0;
+	color: #fff;
+	min-height: 80px;
+	padding: 10px;
+}
+
+.user-head .inbox-avatar {
+	float: left;
+	width: 65px;
+}
+
+.user-head .inbox-avatar img {
+	border-radius: 4px;
+}
+
+.user-head .user-name {
+	display: inline-block;
+	margin: 0 0 0 10px;
+}
+
+.user-head .user-name h5 {
+	font-size: 14px;
+	font-weight: 300;
+	margin-bottom: 0;
+	margin-top: 15px;
+}
+
+.user-head .user-name h5 a {
+	color: #fff;
+}
+
+.user-head .user-name span a {
+	color: #87e2e7;
+	font-size: 12px;
+}
+
+a.mail-dropdown {
+	background: none repeat scroll 0 0 #80d3d9;
+	border-radius: 2px;
+	color: #01a7b3;
+	font-size: 10px;
+	margin-top: 20px;
+	padding: 3px 5px;
+}
+
+.inbox-body {
+	padding: 20px;
+}
+
+.btn-compose {
+	background: none repeat scroll 0 0 #ff6c60;
+	color: #fff;
+	padding: 12px 0;
+	text-align: center;
+	width: 100%;
+}
+
+.btn-compose:hover {
+	background: none repeat scroll 0 0 #f5675c;
+	color: #fff;
+}
+
+ul.inbox-nav {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.inbox-divider {
+	border-bottom: 1px solid #d5d8df;
+}
+
+ul.inbox-nav li {
+	display: inline-block;
+	line-height: 45px;
+	width: 100%;
+}
+
+ul.inbox-nav li a {
+	color: #6a6a6a;
+	display: inline-block;
+	line-height: 45px;
+	padding: 0 20px;
+	width: 100%;
+}
+
+ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus
+	{
+	background: none repeat scroll 0 0 #d5d7de;
+	color: #6a6a6a;
+}
+
+ul.inbox-nav li a i {
+	color: #6a6a6a;
+	font-size: 16px;
+	padding-right: 10px;
+}
+
+ul.inbox-nav li a span.label {
+	margin-top: 13px;
+}
+
+ul.labels-info li h4 {
+	color: #5c5c5e;
+	font-size: 13px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	text-transform: uppercase;
+}
+
+ul.labels-info li {
+	margin: 0;
+}
+
+ul.labels-info li a {
+	border-radius: 0;
+	color: #6a6a6a;
+}
+
+ul.labels-info li a:hover, ul.labels-info li a:focus {
+	background: none repeat scroll 0 0 #d5d7de;
+	color: #6a6a6a;
+}
+
+ul.labels-info li a i {
+	padding-right: 10px;
+}
+
+.nav.nav-pills.nav-stacked.labels-info p {
+	color: #9d9f9e;
+	font-size: 11px;
+	margin-bottom: 0;
+	padding: 0 22px;
+}
+
+.inbox-head {
+	background: none repeat scroll 0 0 #41cac0;
+	border-radius: 0 4px 0 0;
+	color: #fff;
+	min-height: 80px;
+	padding: 20px;
+}
+
+.inbox-head h3 {
+	display: inline-block;
+	font-weight: 300;
+	margin: 0;
+	padding-top: 6px;
+}
+
+.inbox-head .sr-input {
+	border: medium none;
+	border-radius: 4px 0 0 4px;
+	box-shadow: none;
+	color: #8a8a8a;
+	float: left;
+	height: 40px;
+	padding: 0 10px;
+}
+
+.inbox-head .sr-btn {
+	background: none repeat scroll 0 0 #00a6b2;
+	border: medium none;
+	border-radius: 0 4px 4px 0;
+	color: #fff;
+	height: 40px;
+	padding: 0 20px;
+}
+
+.table-inbox {
+	border: 1px solid #d3d3d3;
+	margin-bottom: 0;
+}
+
+.table-inbox tr td {
+	padding: 12px !important;
+}
+
+.table-inbox tr td:hover {
+	cursor: pointer;
+}
+
+.table-inbox tr td .fa-star.inbox-started, .table-inbox tr td .fa-star:hover
+	{
+	color: #f78a09;
+}
+
+.table-inbox tr td .fa-star {
+	color: #d5d5d5;
+}
+
+.table-inbox tr.unread td {
+	background: none repeat scroll 0 0 #f7f7f7;
+	font-weight: 600;
+}
+
+ul.inbox-pagination {
+	float: right;
+}
+
+ul.inbox-pagination li {
+	float: left;
+}
+
+.mail-option {
+	display: inline-block;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.mail-option .chk-all, .mail-option .btn-group {
+	margin-right: 5px;
+}
+
+.mail-option .chk-all, .mail-option .btn-group a.btn {
+	background: none repeat scroll 0 0 #fcfcfc;
+	border: 1px solid #e7e7e7;
+	border-radius: 3px !important;
+	color: #afafaf;
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+.inbox-pagination a.np-btn {
+	background: none repeat scroll 0 0 #fcfcfc;
+	border: 1px solid #e7e7e7;
+	border-radius: 3px !important;
+	color: #afafaf;
+	display: inline-block;
+	padding: 5px 15px;
+}
+
+.mail-option .chk-all input[type="checkbox"] {
+	margin-top: 0;
+}
+
+.mail-option .btn-group a.all {
+	border: medium none;
+	padding: 0;
+}
+
+.inbox-pagination a.np-btn {
+	margin-left: 5px;
+}
+
+.inbox-pagination li span {
+	display: inline-block;
+	margin-right: 5px;
+	margin-top: 7px;
+}
+
+.fileinput-button {
+	background: none repeat scroll 0 0 #eeeeee;
+	border: 1px solid #e6e6e6;
+}
+
+.inbox-body .modal .modal-body input, .inbox-body .modal .modal-body textarea
+	{
+	border: 1px solid #e6e6e6;
+	box-shadow: none;
+}
+
+.btn-send, .btn-send:hover {
+	background: none repeat scroll 0 0 #00a8b3;
+	color: #fff;
+}
+
+.btn-send:hover {
+	background: none repeat scroll 0 0 #009da7;
+}
+
+.modal-header h4.modal-title {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 300;
+}
+
+.modal-body label {
+	font-family: "Open Sans", sans-serif;
+	font-weight: 400;
+}
+
+.heading-inbox h4 {
+	border-bottom: 1px solid #ddd;
+	color: #444;
+	font-size: 18px;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+
+.sender-info {
+	margin-bottom: 20px;
+}
+
+.sender-info img {
+	height: 30px;
+	width: 30px;
+}
+
+.sender-dropdown {
+	background: none repeat scroll 0 0 #eaeaea;
+	color: #777;
+	font-size: 10px;
+	padding: 0 3px;
+}
+
+.view-mail a {
+	color: #ff6c60;
+}
+
+.attachment-mail {
+	margin-top: 30px;
+}
+
+.attachment-mail ul {
+	display: inline-block;
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+.attachment-mail ul li {
+	float: left;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: 150px;
+}
+
+.attachment-mail ul li img {
+	width: 100%;
+}
+
+.attachment-mail ul li span {
+	float: right;
+}
+
+.attachment-mail .file-name {
+	float: left;
+}
+
+.attachment-mail .links {
+	display: inline-block;
+	width: 100%;
+}
+
+.fileinput-button {
+	float: right;
+	margin-right: 4px;
+	overflow: hidden;
+	position: relative;
+}
+
+.fileinput-button input {
+	cursor: pointer;
+	direction: ltr;
+	font-size: 23px;
+	margin: 0;
+	opacity: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transform: translate(-300px, 0px) scale(4);
+}
+
+.fileupload-buttonbar .btn, .fileupload-buttonbar .toggle {
+	margin-bottom: 5px;
+}
+
+.files .progress {
+	width: 200px;
+}
+
+.fileupload-processing .fileupload-loading {
+	display: block;
+}
+
+* html .fileinput-button {
+	line-height: 24px;
+	margin: 1px -3px 0 0;
+}
+
+*+html .fileinput-button {
+	margin: 1px 0 0;
+	padding: 2px 15px;
+}
+
+@media ( max-width : 767px) {
+	.files .btn span {
+		display: none;
+	}
+	.files .preview * {
+		width: 40px;
+	}
+	.files .name * {
+		display: inline-block;
+		width: 80px;
+		word-wrap: break-word;
+	}
+	.files .progress {
+		width: 20px;
+	}
+	.files .delete {
+		width: 60px;
+	}
+}
+
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+}
 </style>
 
 <script>
@@ -51,248 +492,75 @@
 
 			<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<button type="button" class="btn btn-secondary" data-toggle="modal"
-					data-target="#exampleModal">Launch demo modal top</button>
-				<button type="button" class="btn btn-secondary" data-toggle="modal"
-					data-target="#exampleModal1">Launch demo modal v center</button>
-				<div class="row">
-
-					<div class="col-md-12">
-						<div class="tabbable" id="tabs-967254">
-							<ul class="nav nav-tabs">
-								<li class="nav-item"><a class="nav-link active"
-									href="#panel-933367" data-toggle="tab">인사기본</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="#panel-503976" data-toggle="tab">학력사항</a></li>
-							</ul>
-							<div class="tab-content">
-								<div class="tab-pane active" id="panel-933367">
-									<!--GUIA GERAL-->
-									<div id="geral">
-										<div class="portlet-body">
-											<div class="tab-pane active" id="Geral">
-												<div class="form-horizontal">
-													<div class="form-group">
-														<label class="col-md-2 control-label" for="Vendedor">사진</label>
-														<div class="col-md-10">
-															<img src="resources/img/m.jpg"> <span
-																class="field-validation-valid"
-																data-valmsg-for="Representante"
-																data-valmsg-replace="true"></span>
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="col-md-2 control-label">학번</label>
-														<div class="col-md-3">
-															<input type="text" placeholder="학번" class="form-control">
-
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-2 control-label">주민번호</label>
-														<div class="col-md-5">
-															<div class="input-group">
-																<input type="text" placeholder="주민번호"
-																	class="form-control">
-																<p>-</p>
-																<input type="text" placeholder="주민번호"
-																	class="form-control">
-															</div>
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-2 control-label"
-															for="InscricaoEstadual">성명</label>
-														<div class="col-md-3">
-															<input type="text" placeholder="성명" class="form-control">
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-2 control-label"
-															for="InscricaoEstadual">성명(영어)</label>
-														<div class="col-md-3">
-															<input type="text" placeholder="성명(영어)"
-																class="form-control">
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-2 control-label">국가</label>
-														<div class="col-md-4">
-															<select class="form-control">
-																<option>대한민국</option>
-																<option>일본</option>
-																<option>중국</option>
-																<option>미국</option>
-																<option>등등</option>
-															</select>
-														</div>
-													</div>
-													<hr />
-													<div class="form-group">
-														<label class="col-md-2 control-label">성별</label>
-														<div class="col-md-2">
-															<select class="form-control">
-																<option>남자</option>
-																<option>여자</option>
-															</select>
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="col-md-2 control-label">학생상태</label>
-														<div class="col-md-2">
-															<input class="form-control" type="text" id="comprador"
-																name="comprador" placeholder="Comprador" value="" />
-
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-2 control-label"
-															for="CompradorTelefone">Telefone</label>
-														<div class="col-md-2">
-															<input class="form-control"
-																onblur="copiarPara('compradorTelefone', ['telefone', 'cobrancaTelefone'])"
-																type="text" id="compradorTelefone"
-																name="compradorTelefone"
-																placeholder="Telefone do comprador" value="" />
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="col-md-2 control-label" for="CompradorEmail">E-mail</label>
-														<div class="col-md-2">
-															<input class="form-control"
-																onblur="copiarPara('compradorEmail', ['emailLoja', 'emailNFe', 'cobrancaEmail'])"
-																type="email" id="compradorEmail" name="compradorEmail"
-																placeholder="E-mail do comprador" value="" />
-
-														</div>
-													</div>
-												</div>
-
-											</div>
-
-										</div>
-									</div>
-								</div>
-								<div class="tab-pane" id="panel-503976">
-									<div id="faturamento">
-
-										<div class="form-horizontal">
-											<h4>Endereço</h4>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Endereco">Endereço</label>
-												<div class="col-md-10">
-													<input class="form-control" type="text" id="endereco"
-														name="endereco" placeholder="Endereço (rua, número)"
-														value="" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Complemento">Complemento</label>
-												<div class="col-md-10">
-													<input class="form-control" type="text" id="complemento"
-														name="complemento"
-														placeholder="Complemento (apto, lote, etc.)" value="" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Bairro">Bairro</label>
-												<div class="col-md-10">
-													<input class="form-control" type="text" id="bairro"
-														name="bairro" placeholder="Bairro" value="" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Estado">Estado</label>
-												<div class="col-md-1">
-													<input class="form-control" onblur="buscarTabelaPrecos()"
-														type="text" data-val="true"
-														data-val-required="O estado (UF) é obrigatório"
-														id="Estado" name="Estado" placeholder="UF" value="" /> <span
-														class="field-validation-valid" data-valmsg-for="Estado"
-														data-valmsg-replace="true"></span>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Municipio">Municipio</label>
-												<div class="col-md-2">
-													<input class="form-control" type="text" id="municipio"
-														name="municipio" placeholder="Município" value="" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="CEP">CEP</label>
-												<div class="col-md-2">
-													<input class="form-control" type="text" id="cep" name="cep"
-														placeholder="CEP" />
-												</div>
-											</div>
-											<hr />
-											<h4>Telefones</h4>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Telefone">Telefone</label>
-												<div class="col-md-2">
-													<input class="form-control"
-														onblur="copiarPara('Telefone', ['CompradorTelefone', 'CobrancaTelefone'])"
-														type="text" id="telefoneFaturamento"
-														name="telefoneFaturamento" placeholder="Telefone" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Fax">FAX</label>
-												<div class="col-md-2">
-													<input class="form-control" type="text" id="fax" name="fax"
-														placeholder="FAX" value="" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="Celular">Celular</label>
-												<div class="col-md-2">
-													<input class="form-control" type="text" id="celular"
-														name="celular" placeholder="celular" value="" />
-												</div>
-											</div>
-											<hr />
-											<h4>Lista de e-mails</h4>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="EmailLoja">E-mail
-													loja</label>
-												<div class="col-md-2">
-													<input class="form-control"
-														onblur="copiarPara('emailLoja', ['compradorEmail', 'emailNFe', 'cobrancaEmail'])"
-														type="email" id="emailLoja" name="emailLoja"
-														placeholder="E-mail contato da loja" value="" />
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="EmailNFe">E-mail
-													NF-e</label>
-												<div class="col-md-2">
-													<input class="form-control"
-														onblur="copiarPara('emailNFe', ['compradorEmail', 'emailLoja', 'cobrancaEmail'])"
-														type="email" id="emailNFe" name="emailNFe"
-														placeholder="E-mail Nota Fiscal Eletrônica" value="" /> <span
-														class="field-validation-valid" data-valmsg-for="EmailNFe"
-														data-valmsg-replace="true"></span>
-												</div>
-											</div>
-											<hr />
-											<h4>Tabela de preço</h4>
-											<div class="form-group">
-												<label class="col-md-2 control-label" for="TabelaPreco">Tabela
-													de preço</label>
-												<div class="col-md-2" id="tabelaPreco">
-													<select class="form-control select2 col-md-10"
-														id="tabelaPreco" name="tabelaPreco"></select>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+				<div class="mail-box">
+					<aside class="lg-side">
+						<div class="inbox-head">
+							<div class="input-append">
+								<input type="text" class="sr-input" placeholder="Tìm kiếm">
+								<button class="btn sr-btn" type="button">
+									<i class="fa fa-search"></i>
+								</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">조회</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">입력</button>
+								&ensp;
+								<button class="btn sr-btn" type="button">저장</button>
 							</div>
 						</div>
-					</div>
+						<div class="inbox-body">
+							<div class="mail-option">
+								<table class="table table-inbox table-hover">
+									<tbody>
+										<tr class="unread">
+											<td class="view-message  dont-show">Mã nhân viên</td>
+											<td class="view-message">Họ và tên</td>
+											<td></td>
+											<td></td>
+											<td>Tình trạng</td>
+											<td class="view-message  text-left">Chức vụ</td>
+										</tr>
+
+										<tr class="">
+											<td class="view-message  dont-show">NV0001</td>
+											<td colspan="3" class="view-message">Tên của nhân viên</td>
+											<td><span class="label label-success">Làm việc</span></td>
+											<td class="view-message  text-left">Chức vụ</td>
+										</tr>
+										<tr class="">
+											<td class="view-message dont-show">NV0005</td>
+											<td colspan="3" class="view-message">Tên của nhân viên</td>
+											<td><span class="label label-danger">Thôi việc</span></td>
+											<td class="view-message  text-left">Chức vụ</td>
+										</tr>
+										<tr class="">
+											<td class="view-message dont-show">NV0006</td>
+											<td colspan="3" class="view-message">Tên của nhân viên</td>
+											<td><span class="label label-success">Làm việc</span></td>
+											<td class="view-message  text-left">Chức vụ</td>
+										</tr>
+										<tr class="">
+											<td class="view-message dont-show">NV0007</td>
+											<td colspan="3" class="view-message">Tên của nhân viên</td>
+											<td><span class="label label-success">Làm việc</span></td>
+											<td class="view-message  text-left">Chức vụ</td>
+										</tr>
+										<tr class="">
+											<td class="view-message dont-show">NV0008</td>
+											<td colspan="3" class="view-message">Tên của nhân viên</td>
+											<td><span class="label label-warning">Tập huấn</span></td>
+											<td class="view-message  text-left">Chức vụ</td>
+										</tr>
+										<tr class="">
+											<td class="view-message dont-show">NV0010</td>
+											<td colspan="3" class="view-message">Tên của nhân viên</td>
+											<td><span class="label label-info">Công tác</span></td>
+											<td class="view-message  text-left">Chức vụ</td>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</aside>
 				</div>
 			</div>
 			<!-- /.container-fluid -->
@@ -307,9 +575,8 @@
 			</footer>
 
 		</div>
-		<!-- /.content-wrapper -->
-
 	</div>
+	<!-- /.content-wrapper -->
 	<!-- /#wrapper -->
 
 	<!-- Scroll to Top Button-->

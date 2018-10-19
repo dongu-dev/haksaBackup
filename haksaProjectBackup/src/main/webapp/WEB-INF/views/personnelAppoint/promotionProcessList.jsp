@@ -60,47 +60,50 @@
 	
 				<div class="container-fluid">
 				<!-- 여기에 내용이 담긴다 -->
-				<h1>인사관리 > 임용 리스트</h1>
-				<br>
-					<p id="enrolScoreMain">* 승진 처리 리스트</p>
-					<form id="form">
-						<input type='button' class="btn btn-info" onclick='personnelPromotionList()' value='조회'/>
-						<input type='button' class="btn btn-success" onclick='addPersonnelPromotion()' value='입력'/>
-						<input type='button' class="btn btn-primary" onclick='' value='저장'/>
-					</form>
-					<br>
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>승진번호</th>
-								<th>교직원번호</th>
-								<th>발령직급</th>
-								<th>발령연봉</th>
-								<th>발령호봉</th>
-								<th>승진일</th>
-								<th>임용일</th>
-								<th>임명사유</th>
-								<th>등록일자</th>
-								<th>수정일자</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="personnel" items="${promotionList}">
+						<table>
+							<thead>
 								<tr>
-									<td>${personnel.promotionNumber}</td>
-									<td>${personnel.appointmentSchoolPersonnelNumber}</td>
-									<td>${personnel.rankCode}</td>
-									<td>${personnel.promotionAppointmentAnnualIncome}</td>
-									<td>${personnel.promotionAppointmentSalaryclass}</td>
-									<td>${personnel.promotionDay}</td>
-									<td>${personnel.promotionAppointmentDay}</td>
-									<td>${personnel.promotionAppointReason}</td>
-									<td>${personnel.promotionRegistrationDate}</td>
-									<td>${personnel.promotionModificationDate}</td>
+									<th>승진번호</th>
+									<th>교직원번호</th>
+									<th>발령직급</th>
+									<th>발령연봉</th>
+									<th>발령호봉</th>
+									<th>승진일</th>
+									<th>임용일</th>
+									<th>임명사유</th>
+									<th>등록일자</th>
+									<th>수정일자</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+								<tr>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="personnel" items="${promotionList}">
+									<tr>
+										<td>${personnel.promotionNumber}</td>
+										<td>${personnel.appointmentSchoolPersonnelNumber}</td>
+										<td>${personnel.rankCode}</td>
+										<td>${personnel.promotionAppointmentAnnualIncome}</td>
+										<td>${personnel.promotionAppointmentSalaryclass}</td>
+										<td>${personnel.promotionDay}</td>
+										<td>${personnel.promotionAppointmentDay}</td>
+										<td>${personnel.promotionAppointReason}</td>
+										<td>${personnel.promotionRegistrationDate}</td>
+										<td>${personnel.promotionModificationDate}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 				</div>
 				<!-- /.container-fluid -->
 	
