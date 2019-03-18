@@ -131,6 +131,5 @@ form 방식을 이용한 리스트 및 검색기능, 페이징
 	    </select>
 	</mapper>
 ```
-(5) View
-## URL 링크
+## View URL 링크
 https://github.com/wonmin123/haksaBackup/blob/master/haksaProjectBackup/src/main/webapp/WEB-INF/views/personnelCode/personnelCommonList.jsp
