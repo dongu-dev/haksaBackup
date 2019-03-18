@@ -1,6 +1,10 @@
 # 프로젝트 개요 #
 form 방식을 이용한 리스트 및 검색기능, 페이징 
 
+### 전체적인 문제점 ###
+- 주석처리 미흡
+- 가독성을 무시한 소스코드 작성
+
 ### 리스트 및 검색기능 ###
 
 (1) Controller
@@ -32,7 +36,8 @@ form 방식을 이용한 리스트 및 검색기능, 페이징
 	}
 ```
 검색기능 : 내가 특정한 key 값을 통해 검색을 하고자 하여 List 보다는 Map을 사용함.
-문제점 : 리턴 타입을 ModelAndView 를 사용하여 값을 객체로 View에 넘겨주는 방법이 있는데 많은 소스코드들을 작성할 필요가 없었다고 생각함.
+문제점  
+- 리턴 타입을 ModelAndView 를 사용하여 값을 객체로 View에 넘겨주는 방법이 있는데 많은 소스코드들을 작성할 필요가 없었다고 생각함.
 <br><br>
 (2) Service
 ```
@@ -71,7 +76,6 @@ form 방식을 이용한 리스트 및 검색기능, 페이징
           return reListPersonnelCommonCode;
       }
 ```
-문제점 : Service 에서 직접적인 로직처리를 하다보니 가독성이 떨어지는 느낌을 많이 받는다. 인터페이스를 사용을 해야할 거 같다 생각함.
 <br><br>
 (3) Dao
 ```
@@ -95,33 +99,37 @@ form 방식을 이용한 리스트 및 검색기능, 페이징
 ```
 <br><br>
 (4) Mapper
-<mapper namespace="com.cafe24.iumium.personnel.code.dao.PersonnelCodeMapper">
-	<!-- 인사공통코드 리스트 조회 -->
-    <select id="personnelCommonCodeList"
-        parameterType="java.util.Map"
-        resultType="com.cafe24.iumium.personnel.code.dto.PersonnelCommonCode">
-      SELECT 
-         personnel_common_appointment_code AS personnelCommonAppointmentCode
-         , personnel_common_appointment_code_name AS personnelCommonAppointmentCodeName
-         , personnel_common_use_existence_nonexistence AS personnelCommonUseExistenceNonexistence
-         , personnel_common_registration_date AS personnelCommonRegistrationDate
-         , personnel_common_modification_date AS personnelCommonModificationDate
-      FROM ilban_personnel_common
-        <if test="!keyWord.equals('')">
-           <choose>
-              <when test="!optionSearch.equals('')">
-                WHERE personnel_common_appointment_code LIKE #{keyWord} AND personnel_common_appointment_code_name LIKE #{optionSearch}
-              </when>
-           </choose>
-        </if>
-        <if test="keyWord.equals('')">
-          <choose>
-            <when test="!optionSearch.equals('')">
-                WHERE personnel_common_appointment_code_name LIKE #{optionSearch}
-            </when>
-          </choose>
-        </if>
-      ORDER BY personnel_common_appointment_code
-      ASC LIMIT #{startPage}, #{pagePerRow}
-    </select>
-</mapper>
+```
+	<mapper namespace="com.cafe24.iumium.personnel.code.dao.PersonnelCodeMapper">
+		<!-- 인사공통코드 리스트 조회 -->
+	    <select id="personnelCommonCodeList"
+		parameterType="java.util.Map"
+		resultType="com.cafe24.iumium.personnel.code.dto.PersonnelCommonCode">
+	      SELECT 
+		 personnel_common_appointment_code AS personnelCommonAppointmentCode
+		 , personnel_common_appointment_code_name AS personnelCommonAppointmentCodeName
+		 , personnel_common_use_existence_nonexistence AS personnelCommonUseExistenceNonexistence
+		 , personnel_common_registration_date AS personnelCommonRegistrationDate
+		 , personnel_common_modification_date AS personnelCommonModificationDate
+	      FROM ilban_personnel_common
+		<if test="!keyWord.equals('')">
+		   <choose>
+		      <when test="!optionSearch.equals('')">
+			WHERE personnel_common_appointment_code LIKE #{keyWord} AND personnel_common_appointment_code_name LIKE #				{optionSearch}
+		      </when>
+		   </choose>
+		</if>
+		<if test="keyWord.equals('')">
+		  <choose>
+		    <when test="!optionSearch.equals('')">
+			WHERE personnel_common_appointment_code_name LIKE #{optionSearch}
+		    </when>
+		  </choose>
+		</if>
+	      ORDER BY personnel_common_appointment_code
+	      ASC LIMIT #{startPage}, #{pagePerRow}
+	    </select>
+	</mapper>
+```
+(5) View
+https://github.com/wonmin123/haksaBackup/blob/master/haksaProjectBackup/src/main/webapp/WEB-INF/views/personnelCode/personnelCommonList.jsp
